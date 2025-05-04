@@ -50,9 +50,9 @@ export const metadata = {
     canonical: "https://awaisdigitalservices.co.uk",
   },
   icons: {
-    icon: "/favicon.icoo", // ✅ Tab icon
+    icon: "/favicon.ico", // ✅ fixed typo (was .icoo)
     shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.jpg", // ✅ iOS home screen icon
+    apple: "/apple-touch-icon.jpg",
   },
   openGraph: {
     title: "Awais Digital Services (ADS)",
@@ -90,6 +90,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${poppins.variable} ${inter.variable}`}>
       <head>
+        {/* ✅ Google Search Console verification */}
         <meta
           name="google-site-verification"
           content="L1D89FtS1XdbxAxdZry_a5e4h87Clv7_05wYfxtDOrU"
@@ -112,14 +113,12 @@ export default function RootLayout({ children }) {
         </main>
         <MoveToTop />
         <Footer />
-
-        {/* Vercel analytics + speed */}
         <Analytics />
         <SpeedInsights />
 
-        {/* Google Analytics */}
+        {/* ✅ Google Analytics with your real Measurement ID */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID"
+          src="https://www.googletagmanager.com/gtag/js?id=G-X79SQJVGJ5"
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -127,7 +126,7 @@ export default function RootLayout({ children }) {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'YOUR_GA_ID');
+            gtag('config', 'G-X79SQJVGJ5');
           `}
         </Script>
       </body>
