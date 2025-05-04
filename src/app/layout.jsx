@@ -5,7 +5,8 @@ import Footer from "@/components/Footer";
 import CookiesConsent from "@/components/CookiesConsent";
 import MoveToTop from "@/components/MoveToTop";
 import Script from "next/script";
-
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 // ✅ Font setup with fallbacks and CSS variables
 const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800"],
@@ -100,6 +101,8 @@ export default function RootLayout({ children }) {
         </main>
         <MoveToTop />
         <Footer />
+        <Analytics />
+        <SpeedInsights />
 
         {/* ✅ Google Analytics */}
         <Script
