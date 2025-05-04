@@ -22,7 +22,7 @@ const DynamicFAQ = dynamic(() => import("@/components/FAQ"), {
 
 export const metadata = {
   title:
-    "Affordable Website Design & Marketing Services for UK Small Businesses | Awais Digital Services (ADS)",
+    "Home | Affordable Website Design & Marketing Services for UK Small Businesses | Awais Digital Services (ADS)",
   description:
     "ADS builds affordable, SEO-optimized websites, branding, and digital marketing campaigns for startups and small businesses across the UK. Boost your online presence today with our expert team.",
   keywords: [

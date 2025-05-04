@@ -1,4 +1,3 @@
-// components/ModernNavbar.jsx
 "use client";
 
 import { useState } from "react";
@@ -20,16 +19,26 @@ export default function ModernNavbar() {
   return (
     <header className="bg-[#f9f9ff] border-b border-gray-200 fixed w-full z-50 shadow-sm">
       <div className="container mx-auto px-4 flex items-center justify-between h-20">
-        <Link href="/" className="flex items-center gap-2">
+        {/* Site logo */}
+        <Link
+          href="/"
+          className="flex items-center gap-2"
+          aria-label="Homepage"
+        >
           <Image
             src="/logo-web.svg"
-            alt="Site Logo"
+            alt="Awais Digital Services Logo"
             width={160}
             height={40}
             className="w-auto h-10"
           />
         </Link>
-        <nav className="hidden md:flex items-center gap-6">
+
+        {/* Desktop navigation */}
+        <nav
+          className="hidden md:flex items-center gap-6"
+          aria-label="Primary Navigation"
+        >
           {navItems.map(({ label, href, highlight }) => (
             <Link
               key={href}
@@ -42,19 +51,25 @@ export default function ModernNavbar() {
             </Link>
           ))}
         </nav>
+
+        {/* Desktop CTA */}
         <div className="hidden md:block">
           <Link
             href="https://wa.me/447443098117"
             className="bg-red hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-md transition"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Contact us on WhatsApp"
           >
             Whatsapp Us
           </Link>
         </div>
+
+        {/* Mobile menu button */}
         <button
           className="md:hidden text-gray-800 focus:outline-none"
           onClick={() => setMobileOpen(true)}
+          aria-label="Open menu"
         >
           <FaBars size={24} />
         </button>
@@ -62,11 +77,16 @@ export default function ModernNavbar() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="fixed inset-0 bg-white z-50 p-6 overflow-y-auto">
+        <div
+          className="fixed inset-0 bg-white z-50 p-6 overflow-y-auto"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile navigation menu"
+        >
           <div className="flex justify-between items-center mb-6">
             <Image
               src="/logo-web.svg"
-              alt="Logo"
+              alt="Awais Digital Services Logo"
               width={160}
               height={40}
               className="w-auto h-10"
@@ -79,7 +99,11 @@ export default function ModernNavbar() {
               <FaTimes size={26} />
             </button>
           </div>
-          <nav className="flex flex-col space-y-6 mb-10">
+
+          <nav
+            className="flex flex-col space-y-6 mb-10"
+            aria-label="Mobile Navigation"
+          >
             {navItems.map(({ label, href }) => (
               <Link
                 key={href}
@@ -91,18 +115,25 @@ export default function ModernNavbar() {
               </Link>
             ))}
           </nav>
+
           <Link
             href="/book"
             className="block w-full text-center bg-blue-600 text-white py-3 rounded-md font-semibold mb-6"
             onClick={() => setMobileOpen(false)}
+            aria-label="Book a meeting"
           >
             Book a Meeting
           </Link>
-          <div className="flex justify-center gap-6 text-gray-600">
+
+          <div
+            className="flex justify-center gap-6 text-gray-600"
+            aria-label="Social Links"
+          >
             <a
               href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Visit our Facebook page"
             >
               <FaFacebook size={24} />
             </a>
@@ -110,6 +141,7 @@ export default function ModernNavbar() {
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Visit our Instagram profile"
             >
               <FaInstagram size={24} />
             </a>

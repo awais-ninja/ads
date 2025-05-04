@@ -2,7 +2,7 @@ import PricingPage from "./pricing";
 
 export const metadata = {
   title:
-    "Transparent Pricing | Web Design, SEO & Marketing UK | Awais Digital Services (ADS)",
+    "Pricing | Web Design, SEO & Marketing UK | Awais Digital Services (ADS)",
   description:
     "View transparent, affordable pricing for websites, SEO, branding, and digital marketing. No hidden charges. Built for UK startups and small businesses. Free consultation available.",
   keywords: [

@@ -29,7 +29,7 @@ const inter = Inter({
 export const metadata = {
   title: {
     default:
-      "Awais Digital Services (ADS) | Affordable Website Design & Digital Marketing UK",
+      "Home | Awais Digital Services (ADS) | Affordable Website Design & Digital Marketing UK",
     template: "%s | Awais Digital Services (ADS)",
   },
   description:
@@ -50,7 +50,7 @@ export const metadata = {
     canonical: "https://awaisdigitalservices.co.uk",
   },
   icons: {
-    icon: "/favicon.ico", // ✅ Tab icon
+    icon: "/favicon.icoo", // ✅ Tab icon
     shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.jpg", // ✅ iOS home screen icon
   },
