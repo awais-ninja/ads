@@ -7,7 +7,8 @@ import MoveToTop from "@/components/MoveToTop";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-// ✅ Font setup with fallbacks and CSS variables
+
+// ✅ Font setup
 const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800"],
   subsets: ["latin"],
@@ -24,7 +25,7 @@ const inter = Inter({
   preload: true,
 });
 
-// ✅ SEO Metadata
+// ✅ SEO Metadata including icons
 export const metadata = {
   title: {
     default:
@@ -47,6 +48,11 @@ export const metadata = {
   metadataBase: new URL("https://awaisdigitalservices.co.uk"),
   alternates: {
     canonical: "https://awaisdigitalservices.co.uk",
+  },
+  icons: {
+    icon: "/favicon.ico", // ✅ Tab icon
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.jpg", // ✅ iOS home screen icon
   },
   openGraph: {
     title: "Awais Digital Services (ADS)",
@@ -71,7 +77,7 @@ export const metadata = {
     description:
       "Affordable website design & digital marketing services in the UK.",
     images: ["https://awaisdigitalservices.co.uk/og.jpg"],
-    creator: "@yourTwitterHandle", // Optional
+    creator: "@yourTwitterHandle",
   },
   formatDetection: {
     email: false,
@@ -84,6 +90,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${poppins.variable} ${inter.variable}`}>
       <head>
+        {/* Fonts preconnect */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -101,10 +108,12 @@ export default function RootLayout({ children }) {
         </main>
         <MoveToTop />
         <Footer />
+
+        {/* Vercel analytics + speed */}
         <Analytics />
         <SpeedInsights />
 
-        {/* ✅ Google Analytics */}
+        {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID"
           strategy="afterInteractive"
