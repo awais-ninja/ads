@@ -90,6 +90,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${poppins.variable} ${inter.variable}`}>
       <head>
+        <meta
+          name="google-site-verification"
+          content="L1D89FtS1XdbxAxdZry_a5e4h87Clv7_05wYfxtDOrU"
+        />
         {/* Fonts preconnect */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
