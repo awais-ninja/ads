@@ -60,7 +60,7 @@ const faqs = [
         </Link>
         ),
         <Link
-          href="mailto:awaisdigitalservices@gmail.com"
+          href="mailto:info@awaisdigitalservices.co.uk"
           className="underline hover:text-red mx-1"
         >
           email

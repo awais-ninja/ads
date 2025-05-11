@@ -201,11 +201,11 @@ export default function Footer() {
               <li className="flex items-center gap-3 justify-center md:justify-start">
                 <FaEnvelope className="text-blue-400 w-5 h-5" />
                 <Link
-                  href="mailto:awaisdigitalservices@gmail.com"
+                  href="mailto:info@awaisdigitalservices.co.uk"
                   className="text-gray-100 hover:text-blue-300 transition-colors text-center md:text-left"
-                  aria-label="Email Awais Digital Services at awaisdigitalservices@gmail.com"
+                  aria-label="Email Awais Digital Services at info@awaisdigitalservices.co.uk"
                 >
-                  Email: awaisdigitalservices@gmail.com
+                  Email: info@awaisdigitalservices.co.uk
                 </Link>
               </li>
             </ul>

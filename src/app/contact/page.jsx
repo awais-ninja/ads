@@ -1,3 +1,5 @@
+import Link from "@/components/Link";
+
 export const metadata = {
   title: "Contact ADS | Web Design, SEO, Branding & Marketing in the UK",
   description:
@@ -63,7 +65,7 @@ export default function ContactPage() {
       </section>
       <section className="py-12">
         <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <a
+          <Link
             href="https://wa.me/447443098117"
             target="_blank"
             rel="noopener noreferrer"
@@ -83,14 +85,14 @@ export default function ContactPage() {
               WhatsApp Chat
             </span>
             <span className="text-gray-600 mb-2" style={{ color: "#374151" }}>
-              Quick chat via WhatsApp
+              +44 7443 098117
             </span>
             <span className="inline-block px-6 py-2 bg-green-500 text-white rounded-full font-semibold mt-2 group-hover:bg-navy transition">
               Chat Now
             </span>
-          </a>
-          <a
-            href="mailto:awaisdigitalservices@gmail.com"
+          </Link>
+          <Link
+            href="mailto:info@awaisdigitalservices.co.uk"
             className="flex flex-col items-center bg-white rounded-2xl shadow-lg border border-gray-100 p-8 hover:shadow-2xl hover:border-blue-400 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
             role="region"
             aria-label="Contact via Email: Send an email to Awais Digital Services"
@@ -107,13 +109,13 @@ export default function ContactPage() {
               Email Us
             </span>
             <span className="text-gray-600 mb-2" style={{ color: "#374151" }}>
-              awaisdigitalservices@gmail.com
+              info@awaisdigitalservices.co.uk
             </span>
             <span className="inline-block px-6 py-2 bg-blue-500 text-white rounded-full font-semibold mt-2 group-hover:bg-navy transition">
               Send Email
             </span>
-          </a>
-          <a
+          </Link>
+          <Link
             href="tel:+447780059219"
             className="flex flex-col items-center bg-white rounded-2xl shadow-lg border border-gray-100 p-8 hover:shadow-2xl hover:border-red-400 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-red focus:ring-offset-2"
             role="region"
@@ -136,7 +138,7 @@ export default function ContactPage() {
             <span className="inline-block px-6 py-2 bg-red text-white rounded-full font-semibold mt-2 group-hover:bg-navy transition">
               Call Now
             </span>
-          </a>
+          </Link>
         </div>
       </section>
       <section className="py-16 bg-gray-50">

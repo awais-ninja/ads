@@ -140,7 +140,7 @@ const PricingCalculator = () => {
   const handleEmailClick = () => {
     const subject = "Project Estimate Request";
     const body = `Hi, I'm interested in your services. My estimated project cost is £${total}.`;
-    window.location.href = `mailto:awaisdigitalservices@gmail.com?subject=${encodeURIComponent(
+    window.location.href = `mailto:info@awaisdigitalservices.co.uk?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(body)}`;
   };
