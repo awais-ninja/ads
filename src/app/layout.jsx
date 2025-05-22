@@ -2,7 +2,7 @@ import "./globals.css";
 import { Poppins, Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import CookiesConsent from "@/components/CookiesConsent";
+
 import MoveToTop from "@/components/MoveToTop";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
@@ -98,21 +98,45 @@ export default function RootLayout({ children }) {
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
-        <Script id="consent-default" strategy="beforeInteractive">
+
+        {/* Consent Mode Defaults BEFORE gtag loads */}
+        <Script id="consent-mode" strategy="beforeInteractive">
           {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('consent', 'default', {
-            ad_storage: 'denied',
-            analytics_storage: 'denied',
-            ad_user_data: 'denied',
-            ad_personalization: 'denied'
-          });
-        `}
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('consent', 'default', {
+              ad_storage: 'denied',
+              analytics_storage: 'denied',
+              ad_user_data: 'denied',
+              ad_personalization: 'denied',
+              functionality_storage: 'denied',
+              personalization_storage: 'denied',
+              security_storage: 'granted',
+              wait_for_update: 500
+            });
+            gtag('set', 'ads_data_redaction', true);
+            gtag('set', 'url_passthrough', false);
+          `}
         </Script>
+
+        {/* Google Tag Manager (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=GTM-54BRWNG3"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'GTM-54BRWNG3');
+          `}
+        </Script>
+
+        {/* Crisp Chat Integration */}
         <Script id="crisp-widget" strategy="afterInteractive">
           {`
-            window.$crisp=[];
+            window.$crisp=[]; 
             window.CRISP_WEBSITE_ID="${process.env.NEXT_PUBLIC_CRISP_WEBSITE_ID}";
             (function(){
               const d=document;
@@ -123,17 +147,11 @@ export default function RootLayout({ children }) {
             })();
           `}
         </Script>
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=GTM-54BRWNG3"
-          strategy="lazyOnload"
-        />
       </head>
+
       <body className={`${inter.className} bg-white text-black`}>
         <Navbar />
-        <main>
-          {children}
-          <CookiesConsent />
-        </main>
+        <main>{children}</main>
         <MoveToTop />
         <Footer />
         <Analytics />
