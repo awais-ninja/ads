@@ -98,6 +98,18 @@ export default function RootLayout({ children }) {
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
+        <Script id="consent-default" strategy="beforeInteractive">
+          {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('consent', 'default', {
+            ad_storage: 'denied',
+            analytics_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied'
+          });
+        `}
+        </Script>
         <Script id="crisp-widget" strategy="afterInteractive">
           {`
             window.$crisp=[];
@@ -115,16 +127,6 @@ export default function RootLayout({ children }) {
           src="https://www.googletagmanager.com/gtag/js?id=G-X79SQJVGJ5"
           strategy="lazyOnload"
         />
-        <Script id="ga-init" strategy="lazyOnload">
-          {`
-    window.initGA = function () {
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
-      gtag('config', 'G-X79SQJVGJ5');
-    }
-  `}
-        </Script>
       </head>
       <body className={`${inter.className} bg-white text-black`}>
         <Navbar />
