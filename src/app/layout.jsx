@@ -111,6 +111,20 @@ export default function RootLayout({ children }) {
             })();
           `}
         </Script>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-X79SQJVGJ5"
+          strategy="lazyOnload"
+        />
+        <Script id="ga-init" strategy="lazyOnload">
+          {`
+    window.initGA = function () {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-X79SQJVGJ5');
+    }
+  `}
+        </Script>
       </head>
       <body className={`${inter.className} bg-white text-black`}>
         <Navbar />
@@ -122,19 +136,6 @@ export default function RootLayout({ children }) {
         <Footer />
         <Analytics />
         <SpeedInsights />
-
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-X79SQJVGJ5"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-X79SQJVGJ5');
-          `}
-        </Script>
       </body>
     </html>
   );
