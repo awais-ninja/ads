@@ -124,7 +124,7 @@ export default function RootLayout({ children }) {
           `}
         </Script>
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-X79SQJVGJ5"
+          src="https://www.googletagmanager.com/gtag/js?id=GTM-54BRWNG3"
           strategy="lazyOnload"
         />
       </head>
