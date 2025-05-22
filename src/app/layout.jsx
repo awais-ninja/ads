@@ -2,7 +2,6 @@ import "./globals.css";
 import { Poppins, Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
 import MoveToTop from "@/components/MoveToTop";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
@@ -98,26 +97,6 @@ export default function RootLayout({ children }) {
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
-
-        {/* Consent Mode Defaults BEFORE gtag loads */}
-        <Script id="consent-mode" strategy="beforeInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('consent', 'default', {
-              ad_storage: 'denied',
-              analytics_storage: 'denied',
-              ad_user_data: 'denied',
-              ad_personalization: 'denied',
-              functionality_storage: 'denied',
-              personalization_storage: 'denied',
-              security_storage: 'granted',
-              wait_for_update: 500
-            });
-            gtag('set', 'ads_data_redaction', true);
-            gtag('set', 'url_passthrough', false);
-          `}
-        </Script>
 
         {/* Google Tag Manager (gtag.js) */}
         <Script
