@@ -8,7 +8,7 @@ export default function CookiesConsent() {
   useEffect(() => {
     const consent = localStorage.getItem("cookies_consent");
     if (!consent) {
-      setTimeout(() => setVisible(true), 1000); // show after 1s
+      setTimeout(() => setVisible(true), 1000);
     }
   }, []);
 
@@ -20,15 +20,16 @@ export default function CookiesConsent() {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-4 left-4 right-4 md:left-6 md:right-auto md:max-w-md bg-white border border-gray-200 shadow-lg rounded-xl p-4 z-50 animate-fade-in">
-      <p className="text-sm text-gray-700 mb-3">
-        We use cookies to enhance your browsing experience and analyze site
-        traffic. By clicking "Accept", you consent to our use of cookies.
+    <div className="fixed inset-x-4 bottom-6 sm:inset-x-0 sm:bottom-8 sm:left-1/2 sm:-translate-x-1/2 max-w-lg mx-auto z-50 bg-white border border-gray-200 shadow-xl rounded-2xl p-5 animate-fade-in">
+      <p className="text-sm text-gray-800 text-center">
+        We use cookies to improve your experience and analyze traffic. By
+        clicking <span className="font-medium">“Accept”</span>, you agree to our
+        use of cookies.
       </p>
-      <div className="flex justify-end">
+      <div className="flex justify-center mt-4">
         <button
           onClick={acceptCookies}
-          className="bg-navy hover:bg-red text-white px-4 py-2 rounded-md text-sm font-semibold transition-colors"
+          className="bg-navy hover:bg-red text-white px-6 py-2 rounded-full text-sm font-semibold transition-all"
         >
           Accept
         </button>

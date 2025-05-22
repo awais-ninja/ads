@@ -8,7 +8,6 @@ import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-// ✅ Font setup
 const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800"],
   subsets: ["latin"],
@@ -25,7 +24,6 @@ const inter = Inter({
   preload: true,
 });
 
-// ✅ SEO Metadata including icons
 export const metadata = {
   title: {
     default:
@@ -33,7 +31,7 @@ export const metadata = {
     template: "%s | Awais Digital Services (ADS)",
   },
   description:
-    "Affordable website design, branding, and email marketing services for startups and small businesses across the UK. Grow your business online with Awais Digital Services (ADS).",
+    "Affordable website design, branding, and email marketing services for startups and small businesses across the UK.",
   keywords: [
     "affordable website design UK",
     "small business websites UK",
@@ -50,7 +48,7 @@ export const metadata = {
     canonical: "https://awaisdigitalservices.co.uk",
   },
   icons: {
-    icon: "/favicon.ico", // ✅ fixed typo (was .icoo)
+    icon: "/favicon.ico",
     shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.jpg",
   },
@@ -90,22 +88,31 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${poppins.variable} ${inter.variable}`}>
       <head>
-        {/* ✅ Google Search Console verification */}
         <meta
           name="google-site-verification"
           content="L1D89FtS1XdbxAxdZry_a5e4h87Clv7_05wYfxtDOrU"
         />
-        {/* Fonts preconnect */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
+        <Script id="crisp-widget" strategy="afterInteractive">
+          {`
+            window.$crisp=[];
+            window.CRISP_WEBSITE_ID="${process.env.NEXT_PUBLIC_CRISP_WEBSITE_ID}";
+            (function(){
+              const d=document;
+              const s=d.createElement("script");
+              s.src="https://client.crisp.chat/l.js";
+              s.async=1;
+              d.getElementsByTagName("head")[0].appendChild(s);
+            })();
+          `}
+        </Script>
       </head>
-      <body
-        className={`${inter.className} bg-white dark:bg-dark-charcoal text-charcoal dark:text-soft-white`}
-      >
+      <body className={`${inter.className} bg-white text-black`}>
         <Navbar />
         <main>
           {children}
@@ -116,7 +123,6 @@ export default function RootLayout({ children }) {
         <Analytics />
         <SpeedInsights />
 
-        {/* ✅ Google Analytics with your real Measurement ID */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-X79SQJVGJ5"
           strategy="afterInteractive"

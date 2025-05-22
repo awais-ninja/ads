@@ -116,35 +116,38 @@ export default function ModernNavbar() {
             ))}
           </nav>
 
-          <Link
-            href="/book"
-            className="block w-full text-center bg-blue-600 text-white py-3 rounded-md font-semibold mb-6"
-            onClick={() => setMobileOpen(false)}
-            aria-label="Book a meeting"
-          >
-            Book a Meeting
-          </Link>
+          <div className="flex justify-center mb-5">
+            <Link
+              href="https://wa.me/447443098117"
+              className="bg-red hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-md transition"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Contact us on WhatsApp"
+            >
+              Whatsapp Us
+            </Link>
+          </div>
 
           <div
             className="flex justify-center gap-6 text-gray-600"
             aria-label="Social Links"
           >
-            <a
+            <Link
               href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Visit our Facebook page"
             >
               <FaFacebook size={24} />
-            </a>
-            <a
+            </Link>
+            <Link
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Visit our Instagram profile"
             >
               <FaInstagram size={24} />
-            </a>
+            </Link>
           </div>
         </div>
       )}

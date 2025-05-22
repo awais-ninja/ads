@@ -17,18 +17,11 @@ export default function MoveToTop() {
     };
 
     window.addEventListener("scroll", toggleVisibility);
-
-    return () => {
-      window.removeEventListener("scroll", toggleVisibility);
-    };
+    return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
   const scrollToTop = () => {
-    // Use a more efficient approach with CSS scroll-behavior
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -39,10 +32,10 @@ export default function MoveToTop() {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 p-3 bg-red text-white rounded-full shadow-lg hover:bg-navy transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-red focus:ring-offset-2 cursor-pointer"
+          className="hidden md:block fixed bottom-4 right-24 z-40 p-3 bg-red text-white rounded-full shadow-lg hover:bg-navy transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-red focus:ring-offset-2 cursor-pointer"
           aria-label="Move to top"
         >
-          <ArrowUp className="w-6 h-6" />
+          <ArrowUp className="w-9 h-9" />
         </motion.button>
       )}
     </AnimatePresence>

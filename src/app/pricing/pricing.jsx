@@ -2,68 +2,116 @@
 
 import Pricing from "@/components/Pricing";
 import PricingCalculator from "@/components/PricingCalculator";
-import FinalCTA from "@/components/FinalCTA";
 
-import { motion } from "framer-motion";
 import TrustBar from "@/components/TrustBar";
 import WhyChooseUs from "@/components/WhyChooseUs";
-import FAQ from "@/components/FAQ";
-import Link from "next/link";
-import { MdOutlinePriceCheck } from "react-icons/md";
 
-function PricingPage() {
+import Link from "next/link";
+
+import { motion } from "framer-motion";
+import Image from "next/image";
+export default function PricingPage() {
   return (
     <main className="bg-white min-h-screen">
-      <section className="relative py-16 md:py-28 bg-gradient-to-br from-blue-50 via-red/10 to-navy/5 flex flex-col items-center justify-center text-center overflow-hidden">
-        <div className="absolute -top-32 -left-32 w-[32rem] h-[32rem] rounded-full bg-gradient-to-br from-red/20 via-navy/10 to-blue-400/10 z-0 animate-spin-slow" />
-        <div className="absolute -bottom-40 -right-40 w-[36rem] h-[36rem] rounded-full bg-gradient-to-tr from-navy/10 via-red/10 to-blue-600/10 z-0 animate-spin-slow-reverse" />
-        <div className="relative z-10 flex flex-col items-center gap-4 px-4 pt-10 md:pt-0">
-          <span className="inline-flex items-center justify-center bg-white rounded-full shadow-lg p-6  border-4 border-red/20 mb-2 md:mb-4">
-            <MdOutlinePriceCheck className="text-red text-5xl md:text-7xl " />
-          </span>
-          <h1 className="text-2xl md:text-4xl font-extrabold text-navy mb-2 md:px-56 leading-tight">
-            Simple, Transparent Pricing for{" "}
-            <span className="text-red">
-              Affordable Digital Growth in the UK
+      {/* Hero Section */}
+      <section className="relative py-24 md:py-32 px-6 bg-gradient-to-br from-white to-gray-50 overflow-hidden">
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+          {/* Left: Text */}
+          <div className="flex flex-col items-center md:items-start text-center md:text-left px-4 gap-6">
+            <span className="inline-block text-sm font-semibold text-red bg-red/10 px-4 py-2 rounded-full">
+              Affordable Prices
             </span>
-          </h1>
-          <p className="text-base md:text-xl text-gray-700 max-w-2xl mx-auto">
-            No hidden fees. Affordable website, branding, SEO, and marketing
-            services designed to help UK businesses and startups grow online.
-          </p>
+            <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight">
+              Simple, <span className="text-red">Transparent Pricing</span> for
+              Affordable Digital Growth in the UK
+            </h1>
+            <p className="text-lg md:text-xl text-gray-700 max-w-xl">
+              No hidden fees. Affordable website, branding, SEO, and marketing
+              services designed to{" "}
+              <span className="text-red">help UK businesses and startups</span>{" "}
+              grow online.
+            </p>
+            <div className="flex justify-center md:justify-start gap-4">
+              <Link
+                href="https://wa.me/447443098117"
+                aria-label="Message Awais Digital Services on WhatsApp"
+                target="_blank"
+                className="bg-green-500 text-white px-6 py-3 rounded-full hover:bg-navy hover:scale-105 transition transform duration-300"
+              >
+                Message on WhatsApp
+              </Link>
+            </div>
+          </div>
+
+          {/* Right: Image */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="flex justify-center md:justify-end"
+          >
+            <Image
+              src="/images/pricing-image.png"
+              alt="Digital Services Illustration"
+              width={500}
+              height={500}
+              className="hidden md:block w-full max-w-md md:max-w-lg h-auto object-contain transition-transform duration-500 hover:scale-105 rounded-2xl"
+              priority
+            />
+          </motion.div>
         </div>
+
+        {/* Scroll Indicator */}
+        <div className="mt-16 animate-bounce-slow text-center">
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            className="text-black mx-auto"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 5v14M12 19l-7-7M12 19l7-7"
+              stroke="currentColor"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <p className="text-sm text-black mt-2">Scroll down</p>
+        </div>
+
+        {/* Custom bounce animation */}
+        <style jsx>{`
+          @keyframes bounce-slow {
+            0%,
+            100% {
+              transform: translateY(0);
+              opacity: 0.7;
+            }
+            50% {
+              transform: translateY(10px);
+              opacity: 1;
+            }
+          }
+          .animate-bounce-slow {
+            animation: bounce-slow 2.5s infinite;
+          }
+        `}</style>
       </section>
-      <PricingCalculator />
+
+      {/* Pricing Tiers */}
       <section id="pricing-tiers">
         <Pricing />
       </section>
+      {/* Pricing Calculator */}
+      <PricingCalculator />
+      {/* Trust + Why Choose + CTA */}
       <TrustBar />
       <WhyChooseUs />
-      <FinalCTA />
-      <FAQ />
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.6 }}
-        className="text-center bg-navy/5 rounded-xl p-8"
-        role="region"
-        aria-label="Final call to action section"
-      >
-        <h2
-          className="text-2xl font-bold text-navy mb-4"
-          style={{ color: "#1a237e" }}
-        >
-          Ready to Start Your Project?
-        </h2>
-        <Link
-          href="/contact"
-          className="inline-block px-8 py-4 bg-red text-white rounded-lg font-semibold hover:bg-red/90 transition-colors focus:outline-none focus:ring-2 focus:ring-red focus:ring-offset-2"
-          aria-label="Start your project with Awais Digital Services"
-        >
-          Get Started Today
-        </Link>
-      </motion.div>
     </main>
   );
 }
-export default PricingPage;

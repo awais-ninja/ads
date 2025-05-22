@@ -97,9 +97,9 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 px-2 sm:px-4">
+    <form onSubmit={handleSubmit} className="space-y-6 px-2 sm:px-4 ">
       {envError && (
-        <div className="bg-red-100 text-red-800 p-4 rounded-lg text-center font-semibold">
+        <div className="bg-red-100 text-red-800 p-4 rounded-lg text-center font-semibold ">
           {envError}
         </div>
       )}

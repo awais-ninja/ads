@@ -1,4 +1,13 @@
 import Link from "@/components/Link";
+import {
+  FaWhatsapp,
+  FaEnvelope,
+  FaPhoneAlt,
+  FaRegPaperPlane,
+} from "react-icons/fa";
+import ContactForm from "../../components/ContactForm";
+import FinalCTA from "../../components/FinalCTA";
+import Image from "next/image";
 
 export const metadata = {
   title: "Contact ADS | Web Design, SEO, Branding & Marketing in the UK",
@@ -32,37 +41,60 @@ export const metadata = {
   },
 };
 
-import {
-  FaWhatsapp,
-  FaEnvelope,
-  FaPhoneAlt,
-  FaRegPaperPlane,
-} from "react-icons/fa";
-import ContactForm from "../../components/ContactForm";
-import FinalCTA from "../../components/FinalCTA";
-
 export default function ContactPage() {
   return (
     <main className="bg-white min-h-screen px-4 sm:px-0">
-      <section className="relative py-16 md:py-28 bg-gradient-to-br from-blue-50 via-red/10 to-navy/5 flex flex-col items-center justify-center text-center overflow-hidden">
-        <div className="absolute -top-32 -left-32 w-[32rem] h-[32rem] rounded-full bg-gradient-to-br from-red/20 via-navy/10 to-blue-400/10 z-0 animate-spin-slow" />
-        <div className="absolute -bottom-40 -right-40 w-[36rem] h-[36rem] rounded-full bg-gradient-to-tr from-navy/10 via-red/10 to-blue-600/10 z-0 animate-spin-slow-reverse" />
-        <div className="relative z-10 flex flex-col items-center gap-4 px-4 pt-10 md:pt-0">
-          <span className="inline-flex items-center justify-center bg-white rounded-full shadow-lg p-6  border-4 border-red/20 mb-2 md:mb-4">
-            <FaRegPaperPlane className="text-red text-5xl md:text-7xl " />
-          </span>
-          <h1 className="text-3xl md:text-5xl font-extrabold text-navy mb-2 leading-tight">
-            Get in Touch with{" "}
-            <span className="text-red">Awais Digital Services</span> (ADS)
-          </h1>
-          <p className="text-base md:text-xl text-gray-700 max-w-2xl mx-auto">
-            Ready to grow your business online? Whether you have a project in
-            mind, need a website, branding, or digital marketing support — we're
-            here to help! Contact ADS today for a free consultation or just to
-            say hello.
-          </p>
+      <section className="relative bg-gradient-to-br from-white to-gray-100 py-20 px-6 md:px-10 overflow-hidden">
+        {/* Decorative gradient orbs */}
+        <div className="absolute -top-20 -left-20 w-40 h-40 bg-red/5 rounded-full blur-3xl opacity-20" />
+        <div className="absolute -bottom-24 -right-24 w-56 h-56 bg-navy/10 rounded-full blur-3xl opacity-20" />
+
+        <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+          {/* Text Content */}
+          <div className="mt-10 text-center md:text-left flex flex-col gap-6">
+            <div className="inline-block text-sm font-medium text-red bg-red/10 px-4 py-2 rounded-full w-fit mx-auto md:mx-0">
+              Let’s talk
+            </div>
+
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight text-navy">
+              Let’s <span className="text-red">Collaborate</span> and Create{" "}
+              <br />
+              Your Next Big Thing
+            </h1>
+
+            <p className="text-base md:text-lg text-gray-700 max-w-xl mx-auto md:mx-0">
+              Ready to grow your business online? Whether you have a project in
+              mind, need a website, branding, or digital marketing support.
+              we're here to help{" "}
+              <span className="text-red">UK startups and small businesses</span>{" "}
+              Contact ADS today for a free consultation or just to say hello.
+            </p>
+
+            <div className="flex justify-center md:justify-start gap-4">
+              <Link
+                href="https://wa.me/447443098117"
+                aria-label="Message Awais Digital Services on WhatsApp"
+                className="bg-green-500 text-white px-6 py-3 rounded-full hover:bg-navy hover:scale-105 transition transform duration-300"
+              >
+                Message on WhatsApp
+              </Link>
+            </div>
+          </div>
+
+          {/* Right Image */}
+          <div className="flex justify-center md:justify-end">
+            <Image
+              src="/images/contact-hero.png"
+              alt="Contact Illustration"
+              width={500}
+              height={500}
+              priority
+              className=" hidden md:block w-full max-w-md h-auto object-contain rounded-2xl  transition-transform duration-500 hover:scale-105"
+            />
+          </div>
         </div>
       </section>
+
       <section className="py-12">
         <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
           <Link

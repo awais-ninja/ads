@@ -4,20 +4,11 @@ import dynamic from "next/dynamic";
 import Link from "@/components/Link";
 import { Poppins, Inter } from "next/font/google";
 
-// ✅ Font with fallback
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: "700",
-  display: "swap",
-});
+// Fonts
+const poppins = Poppins({ subsets: ["latin"], weight: "700", display: "swap" });
+const inter = Inter({ subsets: ["latin"], weight: "400", display: "swap" });
 
-const inter = Inter({
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-});
-
-// ✅ Load canvas animation only on desktop after paint
+// Lazy-load background animation (disabled on SSR)
 const AnimatedBackground = dynamic(() => import("./AnimatedBackground"), {
   ssr: false,
   loading: () => null,
@@ -25,49 +16,51 @@ const AnimatedBackground = dynamic(() => import("./AnimatedBackground"), {
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white pt-32 pb-24 md:pb-0">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col justify-center items-center">
-        <div
-          className="w-full flex flex-col items-center justify-center text-center max-w-3xl"
-          data-elementtiming="LCP-target"
+    <section
+      className="relative min-h-screen w-full overflow-x-hidden bg-white pt-28 pb-32 flex items-center justify-center text-center"
+      role="region"
+      aria-label="Hero Section"
+    >
+      <div className="container max-w-5xl mx-auto px-4 z-10 flex flex-col items-center justify-center">
+        {/* Heading */}
+        <h1
+          className={`text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6 text-navy ${poppins.className}`}
         >
-          {/* ✅ LCP Target */}
-          <h1
-            className={`text-4xl sm:text-5xl md:text-6xl font-bold ${poppins.className} mb-6 text-navy leading-tight`}
-          >
-            Affordable Website Design and
-            <span className="text-red"> Digital Solutions</span> for Startups
-            and Small Businesses
-          </h1>
+          Affordable Website Design and
+          <span className="text-red"> Digital Solutions</span> for Startups and
+          Small Businesses
+        </h1>
 
-          <p
-            className={`text-lg sm:text-xl ${inter.className} text-gray-900 mb-8`}
-          >
-            We help businesses grow through innovative digital solutions,
-            stunning designs, and powerful web development.
-          </p>
+        {/* Subheading */}
+        <p
+          className={`text-base sm:text-lg md:text-xl text-gray-800 mb-10 ${inter.className}`}
+        >
+          We help businesses grow through innovative digital solutions, stunning
+          designs, and powerful web development.
+        </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/services"
-              className="inline-flex items-center gap-2 bg-navy text-white px-6 py-3 rounded-full font-semibold text-base sm:text-lg shadow-lg hover:bg-red transition-colors"
-              aria-label="Explore our services"
-            >
-              Explore Our Services
-            </Link>
-          </div>
+        {/* Call-to-action buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 mb-24">
+          <Link
+            href="/services"
+            className="inline-flex items-center justify-center px-6 py-3 bg-navy text-white font-semibold rounded-full shadow hover:bg-red transition-colors text-base sm:text-lg"
+            aria-label="Explore our services"
+          >
+            Explore Our Services
+          </Link>
+
+          <Link
+            href="/contact"
+            className="inline-flex items-center justify-center px-6 py-3 text-navy border border-navy font-semibold rounded-full hover:text-white hover:bg-navy transition-colors text-base sm:text-lg"
+            aria-label="Contact our team"
+          >
+            Get a Free Consultation
+          </Link>
         </div>
-      </div>
 
-      {/* 👇 Animate below fold after paint */}
-      <AnimatedBackground />
-
-      <div
-        className="absolute left-0 right-0 bottom-40 flex justify-center animate-bounce-slow"
-        aria-label="Scroll Down Indicator"
-      >
-        <div className="flex flex-col items-center">
-          <span className="text-gray-900 text-sm mb-2">Scroll Down</span>
+        {/* Scroll indicator */}
+        <div className="flex flex-col items-center animate-bounce-slow">
+          <span className="text-black text-sm mb-2">Scroll Down</span>
           <svg
             width="24"
             height="24"
@@ -86,6 +79,10 @@ export default function Hero() {
         </div>
       </div>
 
+      {/* Animated background element */}
+      <AnimatedBackground />
+
+      {/* Scroll animation style */}
       <style jsx global>{`
         @keyframes bounce-slow {
           0%,

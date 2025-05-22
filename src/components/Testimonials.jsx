@@ -90,7 +90,7 @@ export default function Testimonials() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -100 }}
                 transition={{ duration: 0.5 }}
-                className="grid grid-cols-1 gap-4 md:grid-cols-2 gap-8"
+                className="grid grid-cols-1  md:grid-cols-2 gap-8"
               >
                 {visibleTestimonials.map((testimonial, index) => (
                   <motion.div
@@ -156,22 +156,6 @@ export default function Testimonials() {
             </button>
           </div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-center mt-12"
-        >
-          <Link
-            href="/contact"
-            className="inline-block bg-red text-white font-semibold px-8 py-3 rounded-lg hover:bg-navy transition-colors duration-300"
-            aria-label="Share your experience with Awais Digital Services"
-          >
-            Share your experience with Awais Digital Services
-          </Link>
-        </motion.div>
       </div>
     </section>
   );

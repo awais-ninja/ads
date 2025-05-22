@@ -15,7 +15,7 @@ module.exports = {
       colors: {
         // Simple Mode Colors
         navy: "#0B1120",
-        red: "#FF3B30",
+        red: "#c80000ff",
         black: "#000000",
         white: "#FFFFFF",
 

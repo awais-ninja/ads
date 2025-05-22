@@ -88,7 +88,7 @@ const Portfolio = () => {
         <div className="text-center mt-12">
           <Link
             href="/projects"
-            className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 transition-colors shadow-md"
+            className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red hover:bg-blue-600 transition-colors shadow-md"
             aria-label="Explore our complete portfolio of digital projects"
           >
             Explore our complete portfolio of digital projects

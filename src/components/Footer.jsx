@@ -56,12 +56,12 @@ export default function Footer() {
               branding, and email marketing services for startups and small
               businesses across the UK.
             </p>
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 my-5">
               <Link
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-100 hover:text-blue-300 transition-colors"
+                className="text-white hover:hover:text-blue-300 transition-colors"
                 aria-label="Follow Awais Digital Services on Facebook"
               >
                 <FaFacebook className="w-6 h-6" />
@@ -70,7 +70,7 @@ export default function Footer() {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-100 hover:text-blue-300 transition-colors"
+                className="text-white hover:hover:text-blue-300 transition-colors"
                 aria-label="Follow Awais Digital Services on Twitter"
               >
                 <FaTwitter className="w-6 h-6" />
@@ -79,7 +79,7 @@ export default function Footer() {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-100 hover:text-pink-300 transition-colors"
+                className="text-white hover:hover:text-blue-300 transition-colors"
                 aria-label="Follow Awais Digital Services on Instagram"
               >
                 <FaInstagram className="w-6 h-6" />
@@ -88,7 +88,7 @@ export default function Footer() {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-100 hover:text-blue-400 transition-colors"
+                className="text-white hover:hover:text-blue-300 transition-colors"
                 aria-label="Connect with Awais Digital Services on LinkedIn"
               >
                 <FaLinkedin className="w-6 h-6" />
@@ -102,15 +102,6 @@ export default function Footer() {
               Quick Links
             </h3>
             <ul className="space-y-3">
-              <li>
-                <Link
-                  href="/"
-                  className="text-gray-100 hover:text-blue-300 transition-colors text-center md:text-left"
-                  aria-label="Return to Awais Digital Services Homepage"
-                >
-                  Return to Homepage
-                </Link>
-              </li>
               <li>
                 <Link
                   href="/services"
@@ -214,10 +205,10 @@ export default function Footer() {
 
         {/* Divider */}
         <div className="border-t border-gray-700 pt-6 text-center">
-          <div className="mb-2 text-xs text-gray-400">
+          <div className="mb-2 text-xs text-white">
             Serving Startups, Entrepreneurs, and Small Businesses across the UK.
           </div>
-          <div className="text-xs text-gray-500">
+          <div className="text-xs text-white">
             © {new Date().getFullYear()} Awais Digital Services. All rights
             reserved.
           </div>
