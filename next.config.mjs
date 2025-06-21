@@ -7,7 +7,7 @@ const nextConfig = {
       style-src 'self' 'unsafe-inline' https://client.crisp.chat;
       img-src 'self' blob: data: https://image.crisp.chat;
       font-src 'self' https://client.crisp.chat;
-      connect-src 'self' https://client.crisp.chat wss://client.crisp.chat wss://stream.crisp.chat https://vitals.vercel-insights.com;
+      connect-src 'self' https://client.crisp.chat wss://client.crisp.chat wss://stream.crisp.chat wss://client.relay.crisp.chat https://vitals.vercel-insights.com;
       frame-src 'self' https://app.crisp.chat;
       object-src 'none';
       base-uri 'self';
