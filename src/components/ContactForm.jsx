@@ -22,8 +22,6 @@ export default function ContactForm() {
         "Database connection is not configured. Please contact the administrator."
       );
       console.error("Supabase client not initialized");
-    } else {
-      console.log("Supabase client is ready");
     }
   }, []);
 
@@ -45,14 +43,6 @@ export default function ContactForm() {
     setError("");
 
     try {
-      console.log("Attempting to submit form data:", {
-        name: form.name,
-        email: form.email,
-        phone: form.phone,
-        message: form.message,
-        type: form.type,
-      });
-
       const { data, error } = await supabase.from("contacts").insert([
         {
           name: form.name,
@@ -72,7 +62,6 @@ export default function ContactForm() {
           }`
         );
       } else {
-        console.log("Form submitted successfully:", data);
         setSubmitted(true);
       }
     } catch (err) {

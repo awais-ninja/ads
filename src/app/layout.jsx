@@ -3,9 +3,11 @@ import { Poppins, Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import MoveToTop from "@/components/MoveToTop";
+import CookieConsent from "@/components/CookieConsent";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import Image from "next/image";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800"],
@@ -98,7 +100,7 @@ export default function RootLayout({ children }) {
           crossOrigin="anonymous"
         />
 
-        {/* Google Tag Manager (gtag.js) */}
+        {/* Google Tag Manager (gtag.js) - Load but don't track until consent */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=GTM-54BRWNG3"
           strategy="afterInteractive"
@@ -108,15 +110,58 @@ export default function RootLayout({ children }) {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'GTM-54BRWNG3');
+            gtag('config', 'GTM-54BRWNG3', {
+              'analytics_storage': 'denied',
+              'ad_storage': 'denied',
+              'wait_for_update': 500
+            });
+            
+            // Check for existing consent on page load with delay
+            setTimeout(() => {
+              const gtagConsent = localStorage.getItem('cookie-consent');
+              if (gtagConsent) {
+                try {
+                  const consent = JSON.parse(gtagConsent);
+                  if (consent.analytics) {
+                    gtag('consent', 'update', {
+                      'analytics_storage': 'granted'
+                    });
+                  }
+                  if (consent.marketing) {
+                    gtag('consent', 'update', {
+                      'ad_storage': 'granted'
+                    });
+                  }
+                } catch (error) {
+                  console.error('Error parsing saved consent for GTM:', error);
+                }
+              }
+            }, 1000);
           `}
         </Script>
 
-        {/* Crisp Chat Integration */}
+        {/* Crisp Chat Integration - Load but don't track until consent */}
         <Script id="crisp-widget" strategy="afterInteractive">
           {`
             window.$crisp=[]; 
             window.CRISP_WEBSITE_ID="${process.env.NEXT_PUBLIC_CRISP_WEBSITE_ID}";
+            window.$crisp.push(['safe', false]);
+            
+            // Check for existing consent on page load with delay
+            setTimeout(() => {
+              const crispConsent = localStorage.getItem('cookie-consent');
+              if (crispConsent) {
+                try {
+                  const consent = JSON.parse(crispConsent);
+                  if (consent.functional) {
+                    window.$crisp.push(['safe', true]);
+                  }
+                } catch (error) {
+                  console.error('Error parsing saved consent for Crisp:', error);
+                }
+              }
+            }, 1000);
+            
             (function(){
               const d=document;
               const s=d.createElement("script");
@@ -133,6 +178,7 @@ export default function RootLayout({ children }) {
         <main>{children}</main>
         <MoveToTop />
         <Footer />
+        <CookieConsent />
         <Analytics />
         <SpeedInsights />
       </body>

@@ -208,6 +208,19 @@ export default function Footer() {
           <div className="mb-2 text-xs text-white">
             Serving Startups, Entrepreneurs, and Small Businesses across the UK.
           </div>
+          <div className="flex flex-wrap justify-center gap-4 mb-2 text-xs text-blue-200">
+            <Link href="/privacy-policy" className="hover:underline">
+              Privacy Policy
+            </Link>
+            <span>|</span>
+            <Link href="/terms-and-conditions" className="hover:underline">
+              Terms &amp; Conditions
+            </Link>
+            <span>|</span>
+            <Link href="/cookie-policy" className="hover:underline">
+              Cookie Policy
+            </Link>
+          </div>
           <div className="text-xs text-white">
             © {new Date().getFullYear()} Awais Digital Services. All rights
             reserved.

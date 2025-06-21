@@ -30,6 +30,7 @@ export default function ModernNavbar() {
             alt="Awais Digital Services Logo"
             width={160}
             height={40}
+            priority
             className="w-auto h-10"
           />
         </Link>
