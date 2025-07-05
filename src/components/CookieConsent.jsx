@@ -6,6 +6,10 @@ import {
   getConsent,
   testCookies,
   listAllCookies,
+  setCookie,
+  setAnalyticsCookie,
+  setMarketingCookie,
+  setFunctionalCookie,
 } from "@/lib/cookies";
 
 export default function CookieConsent() {
@@ -22,8 +26,11 @@ export default function CookieConsent() {
   });
 
   useEffect(() => {
-    // Check if user has already made a choice - use localStorage directly for immediate check
-    const savedConsent = localStorage.getItem("cookie-consent");
+    // All localStorage and window usage must be inside useEffect
+    const savedConsent =
+      typeof window !== "undefined"
+        ? localStorage.getItem("cookie-consent")
+        : null;
 
     if (!savedConsent) {
       setShowBanner(true);
@@ -45,10 +52,13 @@ export default function CookieConsent() {
 
     // List all current cookies
     setAllCookies(listAllCookies());
+
+    // Set a necessary cookie automatically on first visit
   }, []);
 
-  const applyConsent = (userConsent) => {
+  function applyConsent(userConsent) {
     // Always allow necessary cookies
+    setCookie("awais_necessary_visited", "1", 365);
     if (userConsent.analytics) {
       // Enable Google Analytics
       if (typeof window !== "undefined" && window.gtag) {
@@ -56,6 +66,8 @@ export default function CookieConsent() {
           analytics_storage: "granted",
         });
       }
+      // Set an example analytics cookie
+      setAnalyticsCookie("example", "1", 365);
     }
 
     if (userConsent.marketing) {
@@ -65,6 +77,8 @@ export default function CookieConsent() {
           ad_storage: "granted",
         });
       }
+      // Set an example marketing cookie
+      setMarketingCookie("example", "1", 365);
     }
 
     if (userConsent.functional) {
@@ -72,12 +86,20 @@ export default function CookieConsent() {
       if (typeof window !== "undefined" && window.$crisp) {
         window.$crisp.push(["safe", true]);
       }
+      // Set an example functional cookie
+      setFunctionalCookie("example", "1", 365);
     }
 
     // Update cookie list
     setTimeout(() => {
       setAllCookies(listAllCookies());
     }, 1000);
+  }
+
+  const updateConsent = (consent) => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("cookie-consent", JSON.stringify(consent));
+    }
   };
 
   const acceptAll = () => {
@@ -88,13 +110,13 @@ export default function CookieConsent() {
       functional: true,
     };
     setConsentState(allConsent);
-    localStorage.setItem("cookie-consent", JSON.stringify(allConsent));
+    updateConsent(allConsent);
     applyConsent(allConsent);
     setShowBanner(false);
   };
 
   const acceptSelected = () => {
-    localStorage.setItem("cookie-consent", JSON.stringify(consent));
+    updateConsent(consent);
     applyConsent(consent);
     setShowBanner(false);
     setShowSettings(false);
@@ -108,7 +130,7 @@ export default function CookieConsent() {
       functional: false,
     };
     setConsentState(minimalConsent);
-    localStorage.setItem("cookie-consent", JSON.stringify(minimalConsent));
+    updateConsent(minimalConsent);
     applyConsent(minimalConsent);
     setShowBanner(false);
   };
@@ -243,14 +265,22 @@ export default function CookieConsent() {
                 </h4>
                 <p className="text-sm text-gray-600">
                   Saved consent:{" "}
-                  {localStorage.getItem("cookie-consent") ? "Yes" : "No"}
+                  {typeof window !== "undefined" &&
+                  localStorage.getItem("cookie-consent")
+                    ? "Yes"
+                    : "No"}
                 </p>
                 <p className="text-sm text-gray-600">
-                  Raw value: {localStorage.getItem("cookie-consent") || "None"}
+                  Raw value:{" "}
+                  {(typeof window !== "undefined" &&
+                    localStorage.getItem("cookie-consent")) ||
+                    "None"}
                 </p>
                 <button
                   onClick={() => {
-                    localStorage.removeItem("cookie-consent");
+                    if (typeof window !== "undefined") {
+                      localStorage.removeItem("cookie-consent");
+                    }
                     setShowBanner(true);
                     setShowDebug(false);
                   }}

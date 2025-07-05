@@ -11,11 +11,9 @@ export default function AnimatedBackground() {
 
   // Detect mobile devices
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    handleResize(); // Initial check
+    // All code using window and Math.random() must be inside useEffect
+    setIsMobile(window.innerWidth < 768);
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -26,11 +24,11 @@ export default function AnimatedBackground() {
 
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
+    // All code using window and Math.random() must be inside useEffect
     const width = (canvas.width = window.innerWidth);
     const height = (canvas.height = window.innerHeight);
 
-    const particleCount = 50;
-    particlesRef.current = Array.from({ length: particleCount }, () => ({
+    const particles = Array.from({ length: 50 }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
       size: Math.random() * 5 + 1,

@@ -167,24 +167,21 @@ export const tools = [
     name: "Facebook",
     description: "Social media marketing",
     icon: SiFacebook,
+    url: "https://www.facebook.com/MirzaAwais420",
   },
   {
     id: 24,
     name: "Instagram",
     description: "Visual social media marketing",
     icon: SiInstagram,
-  },
-  {
-    id: 25,
-    name: "Twitter",
-    description: "Social media engagement",
-    icon: SiTwitter,
+    url: "https://www.instagram.com/mirza.awais.official/",
   },
   {
     id: 26,
     name: "LinkedIn",
     description: "Professional networking",
     icon: SiLinkedin,
+    url: "https://www.linkedin.com/company/awais-digital-services",
   },
   {
     id: 27,

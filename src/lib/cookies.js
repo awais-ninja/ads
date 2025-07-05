@@ -5,6 +5,7 @@ export const setCookie = (name, value, days = 365) => {
 
   // Get domain for cookie - handle production domain properly
   let domain = "";
+  // Ensure this runs only on the client
   if (typeof window !== "undefined") {
     const hostname = window.location.hostname;
     if (hostname === "localhost" || hostname === "127.0.0.1") {
@@ -19,12 +20,16 @@ export const setCookie = (name, value, days = 365) => {
     }
   }
 
-  document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Lax${domain}`;
+  // Only run on client
+  if (typeof document !== "undefined") {
+    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Lax${domain}`;
+  }
 };
 
 export const getCookie = (name) => {
   const nameEQ = name + "=";
-  const ca = document.cookie.split(";");
+  // Ensure this runs only on the client
+  const ca = typeof document !== "undefined" ? document.cookie.split(";") : [];
   for (let i = 0; i < ca.length; i++) {
     let c = ca[i];
     while (c.charAt(0) === " ") c = c.substring(1, c.length);
@@ -35,6 +40,7 @@ export const getCookie = (name) => {
 
 export const deleteCookie = (name) => {
   let domain = "";
+  // Ensure this runs only on the client
   if (typeof window !== "undefined") {
     const hostname = window.location.hostname;
     if (hostname === "localhost" || hostname === "127.0.0.1") {
@@ -49,11 +55,16 @@ export const deleteCookie = (name) => {
     }
   }
 
-  document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;${domain}`;
+  // Only run on client
+  if (typeof document !== "undefined") {
+    document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;${domain}`;
+  }
 };
 
 export const clearAllCookies = () => {
-  const cookies = document.cookie.split(";");
+  // Ensure this runs only on the client
+  const cookies =
+    typeof document !== "undefined" ? document.cookie.split(";") : [];
   for (let i = 0; i < cookies.length; i++) {
     const cookie = cookies[i];
     const eqPos = cookie.indexOf("=");
@@ -64,14 +75,21 @@ export const clearAllCookies = () => {
 
 // Consent management
 export const getConsent = () => {
+  // Only run on client
   if (typeof window === "undefined") return null;
-  const saved = localStorage.getItem("cookie-consent");
+  const saved =
+    typeof window !== "undefined"
+      ? localStorage.getItem("cookie-consent")
+      : null;
   return saved ? JSON.parse(saved) : null;
 };
 
 export const setConsent = (consent) => {
+  // Only run on client
   if (typeof window === "undefined") return;
-  localStorage.setItem("cookie-consent", JSON.stringify(consent));
+  if (typeof window !== "undefined") {
+    localStorage.setItem("cookie-consent", JSON.stringify(consent));
+  }
 };
 
 export const hasConsent = (type) => {
@@ -81,10 +99,12 @@ export const hasConsent = (type) => {
 
 // Test if cookies are working
 export const testCookies = () => {
+  // Only run on client
   if (typeof window === "undefined") return false;
 
   try {
     const testName = "awais_cookie_test";
+    // Only run on client
     const testValue = "test_value_" + Date.now();
 
     setCookie(testName, testValue, 1);
@@ -100,9 +120,11 @@ export const testCookies = () => {
 
 // Debug function to list all cookies
 export const listAllCookies = () => {
+  // Only run on client
   if (typeof window === "undefined") return [];
 
-  const cookies = document.cookie.split(";");
+  const cookies =
+    typeof document !== "undefined" ? document.cookie.split(";") : [];
   return cookies.map((cookie) => {
     const [name, value] = cookie.trim().split("=");
     return { name, value };

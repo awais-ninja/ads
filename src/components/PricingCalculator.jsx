@@ -130,19 +130,23 @@ const PricingCalculator = () => {
   ]);
 
   const handleWhatsAppClick = () => {
-    const message = `Hi, I'm interested in your services. My estimated project cost is £${total}.`;
-    window.open(
-      `https://wa.me/447443098117?text=${encodeURIComponent(message)}`,
-      "_blank"
-    );
+    if (typeof window !== "undefined") {
+      const message = `Hi, I'm interested in your services. My estimated project cost is £${total}.`;
+      window.open(
+        `https://wa.me/447443098117?text=${encodeURIComponent(message)}`,
+        "_blank"
+      );
+    }
   };
 
   const handleEmailClick = () => {
-    const subject = "Project Estimate Request";
-    const body = `Hi, I'm interested in your services. My estimated project cost is £${total}.`;
-    window.location.href = `mailto:info@awaisdigitalservices.co.uk?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
+    if (typeof window !== "undefined") {
+      const subject = "Project Estimate Request";
+      const body = `Hi, I'm interested in your services. My estimated project cost is £${total}.`;
+      window.location.href = `mailto:info@awaisdigitalservices.co.uk?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(body)}`;
+    }
   };
 
   return (

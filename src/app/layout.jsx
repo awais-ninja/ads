@@ -7,7 +7,8 @@ import CookieConsent from "@/components/CookieConsent";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import Image from "next/image";
+
+import ClientSideEffects from "@/components/ClientSideEffects";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800"],
@@ -102,7 +103,7 @@ export default function RootLayout({ children }) {
 
         {/* Google Tag Manager (gtag.js) - Load but don't track until consent */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=GTM-54BRWNG3"
+          src="https://www.googletagmanager.com/gtag/js?id=G-X79SQJVGJ5"
           strategy="afterInteractive"
         />
         <Script id="gtag-init" strategy="afterInteractive">
@@ -110,7 +111,7 @@ export default function RootLayout({ children }) {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'GTM-54BRWNG3', {
+            gtag('config', 'G-X79SQJVGJ5', {
               'analytics_storage': 'denied',
               'ad_storage': 'denied',
               'wait_for_update': 500
@@ -174,6 +175,7 @@ export default function RootLayout({ children }) {
       </head>
 
       <body className={`${inter.className} bg-white text-black`}>
+        <ClientSideEffects />
         <Navbar />
         <main>{children}</main>
         <MoveToTop />

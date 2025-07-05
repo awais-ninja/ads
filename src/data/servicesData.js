@@ -326,6 +326,7 @@ export const platforms = [
     name: "Facebook",
     description: "Social media marketing",
     icon: FaFacebook,
+    url: "https://www.facebook.com/MirzaAwais420",
   },
   {
     id: 2,

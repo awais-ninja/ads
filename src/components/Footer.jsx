@@ -58,7 +58,7 @@ export default function Footer() {
             </p>
             <div className="flex space-x-4 my-5">
               <Link
-                href="https://facebook.com"
+                href="https://www.facebook.com/MirzaAwais420"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:hover:text-blue-300 transition-colors"
@@ -67,16 +67,7 @@ export default function Footer() {
                 <FaFacebook className="w-6 h-6" />
               </Link>
               <Link
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:hover:text-blue-300 transition-colors"
-                aria-label="Follow Awais Digital Services on Twitter"
-              >
-                <FaTwitter className="w-6 h-6" />
-              </Link>
-              <Link
-                href="https://instagram.com"
+                href="https://www.instagram.com/mirza.awais.official/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:hover:text-blue-300 transition-colors"
@@ -85,7 +76,7 @@ export default function Footer() {
                 <FaInstagram className="w-6 h-6" />
               </Link>
               <Link
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/company/awais-digital-services"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:hover:text-blue-300 transition-colors"

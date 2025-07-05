@@ -134,7 +134,7 @@ export default function ModernNavbar() {
             aria-label="Social Links"
           >
             <Link
-              href="https://facebook.com"
+              href="https://www.facebook.com/MirzaAwais420"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Visit our Facebook page"
@@ -142,12 +142,20 @@ export default function ModernNavbar() {
               <FaFacebook size={24} />
             </Link>
             <Link
-              href="https://instagram.com"
+              href="https://www.instagram.com/mirza.awais.official/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Visit our Instagram profile"
             >
               <FaInstagram size={24} />
+            </Link>
+            <Link
+              href="https://www.linkedin.com/company/awais-digital-services"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Connect with Awais Digital Services on LinkedIn"
+            >
+              <FaLinkedin size={24} />
             </Link>
           </div>
         </div>
