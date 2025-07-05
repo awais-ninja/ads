@@ -28,7 +28,8 @@ export default function AnimatedBackground() {
     const width = (canvas.width = window.innerWidth);
     const height = (canvas.height = window.innerHeight);
 
-    const particles = Array.from({ length: 50 }, () => ({
+    // Store particles in the ref so they persist across renders
+    particlesRef.current = Array.from({ length: 50 }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
       size: Math.random() * 5 + 1,
@@ -56,18 +57,14 @@ export default function AnimatedBackground() {
       animationRef.current = requestAnimationFrame(animate);
     };
 
-    // Use requestIdleCallback if available, fallback to timeout
-    const startAnimation = () => {
-      if ("requestIdleCallback" in window) {
-        window.requestIdleCallback(() => animate());
-      } else {
-        setTimeout(() => animate(), 1500);
+    // Start animation immediately
+    animate();
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
       }
     };
-
-    startAnimation();
-
-    return () => cancelAnimationFrame(animationRef.current);
   }, [isMobile]);
 
   if (isMobile) return null;
