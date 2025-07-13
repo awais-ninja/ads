@@ -64,7 +64,6 @@ const packages = [
     features: [
       "E-commerce Store Setup UK or Full Corporate Website (8+ pages)",
       "Full Branding Kit (Logo, Colors, Typography)",
-      "Blog and CMS (Content Management System) Integration",
       "Full Email Marketing System Setup",
       "3 Months Website Care and Support (updates, backups, fixes)",
       "3 free revision rounds",
