@@ -62,9 +62,9 @@ const Portfolio = () => {
                 <Link
                   href={`/projects/${project.id}`}
                   className="inline-flex items-center text-blue-700 font-medium hover:text-blue-900 transition-colors"
-                  aria-label={`View detailed case study of our ${project.title} project`}
+                  aria-label={`View project`}
                 >
-                  View detailed case study of our {project.title} project
+                  View More
                   <svg
                     className="w-4 h-4 ml-1"
                     fill="none"
