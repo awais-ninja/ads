@@ -111,7 +111,10 @@ export default function RootLayout({ children }) {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-X79SQJVGJ5', {
+            
+            // Initialize with denied consent by default (GDPR compliant)
+            // DO NOT call gtag('config') until consent is granted
+            gtag('consent', 'default', {
               'analytics_storage': 'denied',
               'ad_storage': 'denied',
               'wait_for_update': 500
@@ -124,9 +127,11 @@ export default function RootLayout({ children }) {
                 try {
                   const consent = JSON.parse(gtagConsent);
                   if (consent.analytics) {
+                    // Only initialize GA if analytics consent is granted
                     gtag('consent', 'update', {
                       'analytics_storage': 'granted'
                     });
+                    gtag('config', 'G-X79SQJVGJ5');
                   }
                   if (consent.marketing) {
                     gtag('consent', 'update', {

@@ -1,64 +1,39 @@
 "use client";
+
 import { useEffect } from "react";
+import { initializeNecessaryCookies, clearConsentCookies } from "@/lib/cookies";
 
 export default function ClientSideEffects() {
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        window.dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-X79SQJVGJ5", {
-        analytics_storage: "denied",
-        ad_storage: "denied",
-        wait_for_update: 500,
-      });
+    // Initialize necessary cookies
+    initializeNecessaryCookies();
 
-      // Check for existing consent on page load with delay
-      setTimeout(() => {
-        const gtagConsent = localStorage.getItem("cookie-consent");
-        if (gtagConsent) {
-          try {
-            const consent = JSON.parse(gtagConsent);
-            if (consent.analytics) {
-              gtag("consent", "update", {
-                analytics_storage: "granted",
-              });
-            }
-            if (consent.marketing) {
-              gtag("consent", "update", {
-                ad_storage: "granted",
-              });
-            }
-          } catch (error) {
-            console.error("Error parsing saved consent for GTM:", error);
-          }
-        }
-      }, 1000);
+    // Clear any existing problematic cookies on first load
+    const hasClearedCookies = localStorage.getItem("awais_cookies_cleared");
+    if (!hasClearedCookies) {
+      // Clear any old consent-based cookies that might be causing issues
+      clearConsentCookies();
+      localStorage.setItem("awais_cookies_cleared", "true");
     }
-    if (typeof document !== "undefined") {
-      const d = document;
-      const s = d.createElement("script");
-      s.src = "https://client.crisp.chat/l.js";
-      s.async = 1;
-      d.getElementsByTagName("head")[0].appendChild(s);
-    }
-    if (typeof window !== "undefined") {
-      const crispConsent = localStorage.getItem("cookie-consent");
-      if (crispConsent) {
-        try {
-          const consent = JSON.parse(crispConsent);
-          if (consent.functional) {
-            if (typeof window.$crisp !== "undefined") {
-              window.$crisp.push(["safe", true]);
-            }
-          }
-        } catch (error) {
-          console.error("Error parsing saved consent for Crisp:", error);
+
+    // Check if there are any Google Analytics cookies without consent
+    const savedConsent = localStorage.getItem("cookie-consent");
+    if (savedConsent) {
+      try {
+        const consent = JSON.parse(savedConsent);
+        if (!consent.analytics) {
+          // Clear Google Analytics cookies if analytics consent is not granted
+          clearConsentCookies();
         }
+      } catch (error) {
+        console.error("Error parsing saved consent:", error);
+        clearConsentCookies();
       }
+    } else {
+      // No consent saved, clear any existing analytics cookies
+      clearConsentCookies();
     }
   }, []);
+
   return null;
 }

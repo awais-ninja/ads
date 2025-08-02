@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { FaCookieBite, FaTimes, FaCheck, FaCog, FaBug } from "react-icons/fa";
+import { FaCookieBite, FaTimes, FaCheck, FaCog } from "react-icons/fa";
 import {
   setConsent,
   getConsent,
@@ -10,14 +10,13 @@ import {
   setAnalyticsCookie,
   setMarketingCookie,
   setFunctionalCookie,
+  clearConsentCookies,
+  initializeNecessaryCookies,
 } from "@/lib/cookies";
 
 export default function CookieConsent() {
   const [showBanner, setShowBanner] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
-  const [showDebug, setShowDebug] = useState(false);
-  const [cookieTestResult, setCookieTestResult] = useState(null);
-  const [allCookies, setAllCookies] = useState([]);
   const [consent, setConsentState] = useState({
     necessary: true, // Always true, can't be disabled
     analytics: false,
@@ -26,6 +25,9 @@ export default function CookieConsent() {
   });
 
   useEffect(() => {
+    // Initialize necessary cookies first
+    initializeNecessaryCookies();
+
     // All localStorage and window usage must be inside useEffect
     const savedConsent =
       typeof window !== "undefined"
@@ -45,29 +47,32 @@ export default function CookieConsent() {
         setShowBanner(true);
       }
     }
-
-    // Test if cookies are working
-    const testResult = testCookies();
-    setCookieTestResult(testResult);
-
-    // List all current cookies
-    setAllCookies(listAllCookies());
-
-    // Set a necessary cookie automatically on first visit
   }, []);
 
   function applyConsent(userConsent) {
     // Always allow necessary cookies
     setCookie("awais_necessary_visited", "1", 365);
+
     if (userConsent.analytics) {
       // Enable Google Analytics
       if (typeof window !== "undefined" && window.gtag) {
         window.gtag("consent", "update", {
           analytics_storage: "granted",
         });
+        // Initialize Google Analytics only when consent is granted
+        window.gtag("config", "G-X79SQJVGJ5");
       }
       // Set an example analytics cookie
       setAnalyticsCookie("example", "1", 365);
+    } else {
+      // Disable Google Analytics if consent is withdrawn
+      if (typeof window !== "undefined" && window.gtag) {
+        window.gtag("consent", "update", {
+          analytics_storage: "denied",
+        });
+      }
+      // Clear Google Analytics cookies when consent is withdrawn
+      clearConsentCookies();
     }
 
     if (userConsent.marketing) {
@@ -79,6 +84,13 @@ export default function CookieConsent() {
       }
       // Set an example marketing cookie
       setMarketingCookie("example", "1", 365);
+    } else {
+      // Disable marketing cookies if consent is withdrawn
+      if (typeof window !== "undefined" && window.gtag) {
+        window.gtag("consent", "update", {
+          ad_storage: "denied",
+        });
+      }
     }
 
     if (userConsent.functional) {
@@ -88,12 +100,12 @@ export default function CookieConsent() {
       }
       // Set an example functional cookie
       setFunctionalCookie("example", "1", 365);
+    } else {
+      // Disable functional cookies if consent is withdrawn
+      if (typeof window !== "undefined" && window.$crisp) {
+        window.$crisp.push(["safe", false]);
+      }
     }
-
-    // Update cookie list
-    setTimeout(() => {
-      setAllCookies(listAllCookies());
-    }, 1000);
   }
 
   const updateConsent = (consent) => {
@@ -132,6 +144,8 @@ export default function CookieConsent() {
     setConsentState(minimalConsent);
     updateConsent(minimalConsent);
     applyConsent(minimalConsent);
+    // Clear all consent-based cookies when declining
+    clearConsentCookies();
     setShowBanner(false);
   };
 
@@ -143,18 +157,12 @@ export default function CookieConsent() {
     }));
   };
 
-  const runCookieTest = () => {
-    const result = testCookies();
-    setCookieTestResult(result);
-    setAllCookies(listAllCookies());
-  };
-
   if (!showBanner) return null;
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 shadow-lg">
       <div className="max-w-7xl mx-auto p-4">
-        {!showSettings && !showDebug ? (
+        {!showSettings ? (
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div className="flex items-start gap-3 flex-1">
               <FaCookieBite className="text-navy text-xl mt-1 flex-shrink-0" />
@@ -171,13 +179,6 @@ export default function CookieConsent() {
               </div>
             </div>
             <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
-              <button
-                onClick={() => setShowDebug(true)}
-                className="px-4 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2"
-              >
-                <FaBug className="text-sm" />
-                Debug
-              </button>
               <button
                 onClick={() => setShowSettings(true)}
                 className="px-4 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2"
@@ -197,122 +198,6 @@ export default function CookieConsent() {
               >
                 <FaCheck className="text-sm" />
                 Accept All
-              </button>
-            </div>
-          </div>
-        ) : showDebug ? (
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <h3 className="font-semibold text-navy">Cookie Debug</h3>
-              <button
-                onClick={() => setShowDebug(false)}
-                className="text-gray-500 hover:text-gray-700"
-              >
-                <FaTimes />
-              </button>
-            </div>
-
-            <div className="space-y-3">
-              <div className="p-3 bg-gray-50 rounded-lg">
-                <h4 className="font-medium text-gray-900 mb-2">Cookie Test</h4>
-                <p className="text-sm text-gray-600 mb-2">
-                  Status:{" "}
-                  <span
-                    className={
-                      cookieTestResult ? "text-green-600" : "text-red-600"
-                    }
-                  >
-                    {cookieTestResult ? "Working" : "Not Working"}
-                  </span>
-                </p>
-                <button
-                  onClick={runCookieTest}
-                  className="px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
-                >
-                  Test Again
-                </button>
-              </div>
-
-              <div className="p-3 bg-gray-50 rounded-lg">
-                <h4 className="font-medium text-gray-900 mb-2">
-                  Current Cookies ({allCookies.length})
-                </h4>
-                <div className="max-h-32 overflow-y-auto">
-                  {allCookies.length > 0 ? (
-                    allCookies.map((cookie, index) => (
-                      <div key={index} className="text-sm text-gray-600 mb-1">
-                        <strong>{cookie.name}:</strong> {cookie.value}
-                      </div>
-                    ))
-                  ) : (
-                    <p className="text-sm text-gray-500">No cookies found</p>
-                  )}
-                </div>
-              </div>
-
-              <div className="p-3 bg-gray-50 rounded-lg">
-                <h4 className="font-medium text-gray-900 mb-2">
-                  Current Consent
-                </h4>
-                <pre className="text-sm text-gray-600 bg-white p-2 rounded border">
-                  {JSON.stringify(consent, null, 2)}
-                </pre>
-              </div>
-
-              <div className="p-3 bg-gray-50 rounded-lg">
-                <h4 className="font-medium text-gray-900 mb-2">
-                  localStorage Status
-                </h4>
-                <p className="text-sm text-gray-600">
-                  Saved consent:{" "}
-                  {typeof window !== "undefined" &&
-                  localStorage.getItem("cookie-consent")
-                    ? "Yes"
-                    : "No"}
-                </p>
-                <p className="text-sm text-gray-600">
-                  Raw value:{" "}
-                  {(typeof window !== "undefined" &&
-                    localStorage.getItem("cookie-consent")) ||
-                    "None"}
-                </p>
-                <button
-                  onClick={() => {
-                    if (typeof window !== "undefined") {
-                      localStorage.removeItem("cookie-consent");
-                    }
-                    setShowBanner(true);
-                    setShowDebug(false);
-                  }}
-                  className="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 mt-2"
-                >
-                  Reset Consent
-                </button>
-              </div>
-
-              <div className="p-3 bg-gray-50 rounded-lg">
-                <h4 className="font-medium text-gray-900 mb-2">
-                  Script Status
-                </h4>
-                <p className="text-sm text-gray-600">
-                  gtag available:{" "}
-                  {typeof window !== "undefined" && window.gtag ? "Yes" : "No"}
-                </p>
-                <p className="text-sm text-gray-600">
-                  $crisp available:{" "}
-                  {typeof window !== "undefined" && window.$crisp
-                    ? "Yes"
-                    : "No"}
-                </p>
-              </div>
-            </div>
-
-            <div className="flex gap-2 pt-2">
-              <button
-                onClick={() => setShowDebug(false)}
-                className="px-4 py-2 text-sm bg-gray-500 text-white rounded-lg hover:bg-gray-600"
-              >
-                Close
               </button>
             </div>
           </div>
@@ -355,6 +240,7 @@ export default function CookieConsent() {
                   </h4>
                   <p className="text-sm text-gray-600">
                     Help us understand how visitors interact with our website
+                    (Google Analytics)
                   </p>
                 </div>
                 <div className="flex items-center">
