@@ -1,18 +1,8 @@
-import Link from "@/components/Link";
-import Image from "next/image";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import {
-  FaCalendar,
-  FaClock,
-  FaUser,
-  FaTag,
-  FaArrowRight,
-  FaFire,
-} from "react-icons/fa";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+import { FaFire, FaSearch } from "react-icons/fa";
+
 import BlogFilterClient from "@/components/BlogFilterClient";
 
 function getAllBlogPosts() {
@@ -46,6 +36,7 @@ export default function BlogPage() {
   const blogCategories = Array.from(
     new Set(blogPosts.flatMap((post) => post.tags || []))
   );
+
   return (
     <main className="min-h-screen bg-white pt-20">
       {/* Hero Section */}
@@ -88,10 +79,47 @@ export default function BlogPage() {
           </div>
         </div>
       </section>
+
+      {/* Search and Stats Section */}
+      <section className="py-8 bg-gray-50 border-b border-gray-200">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <FaSearch className="text-navy text-xl" />
+              <h2 className="text-2xl font-bold text-navy">
+                Discover Digital Marketing Insights
+              </h2>
+            </div>
+            <p className="text-gray-600 mb-8">
+              From website design tips to SEO strategies, find everything you
+              need to grow your business online.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <div className="text-3xl font-bold text-red mb-2">
+                  {blogPosts.filter((p) => p.featured).length}
+                </div>
+                <div className="text-navy font-medium">Featured Posts</div>
+              </div>
+              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <div className="text-3xl font-bold text-red mb-2">
+                  {blogPosts.length}
+                </div>
+                <div className="text-navy font-medium">Total Articles</div>
+              </div>
+              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <div className="text-3xl font-bold text-red mb-2">
+                  {blogCategories.length}
+                </div>
+                <div className="text-navy font-medium">Categories</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Category Filter Section */}
       <BlogFilterClient posts={blogPosts} categories={blogCategories} />
-      {/* Featured Posts Section */}
-      {/* All Posts Section */}
     </main>
   );
 }

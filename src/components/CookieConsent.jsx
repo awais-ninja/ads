@@ -2,8 +2,6 @@
 import { useState, useEffect } from "react";
 import { FaCookieBite, FaTimes, FaCheck, FaCog, FaBug } from "react-icons/fa";
 import {
-  setConsent,
-  getConsent,
   testCookies,
   listAllCookies,
   setCookie,

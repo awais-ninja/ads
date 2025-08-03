@@ -17,9 +17,7 @@ import {
   FaChalkboardTeacher,
   FaShoppingBag,
   FaHandsHelping,
-  FaUsers,
 } from "react-icons/fa";
-import Link from "@/components/Link";
 
 const industries = [
   { icon: <FaRocket />, label: "Startups & Entrepreneurs" },
