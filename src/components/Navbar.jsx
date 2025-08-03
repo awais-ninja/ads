@@ -1,7 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { FaBars, FaTimes, FaFacebook, FaInstagram } from "react-icons/fa";
+import {
+  FaBars,
+  FaTimes,
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+} from "react-icons/fa";
 import Link from "@/components/Link";
 import Image from "next/image";
 
