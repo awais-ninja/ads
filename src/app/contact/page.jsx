@@ -1,10 +1,5 @@
 import Link from "@/components/Link";
-import {
-  FaWhatsapp,
-  FaEnvelope,
-  FaPhoneAlt,
-  FaRegPaperPlane,
-} from "react-icons/fa";
+import { FaWhatsapp, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 import ContactForm from "../../components/ContactForm";
 import FinalCTA from "../../components/FinalCTA";
 import Image from "next/image";

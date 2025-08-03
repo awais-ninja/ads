@@ -9,7 +9,6 @@ const PricingCalculator = () => {
   const [ecommerce, setEcommerce] = useState(false);
   const [branding, setBranding] = useState(false);
   const [emailMarketing, setEmailMarketing] = useState(false);
-  const [blogSetup, setBlogSetup] = useState(false);
   const [seo, setSeo] = useState(false);
   const [maintenance, setMaintenance] = useState(false);
   const [googleMyBusiness, setGoogleMyBusiness] = useState(false);
@@ -81,13 +80,6 @@ const PricingCalculator = () => {
       setState: setCopywriting,
     },
     {
-      id: "blogSetup",
-      name: "Blog Setup",
-      price: 300,
-      state: blogSetup,
-      setState: setBlogSetup,
-    },
-    {
       id: "ecommerce",
       name: "E-commerce Setup",
       price: 1000,
@@ -120,7 +112,6 @@ const PricingCalculator = () => {
     ecommerce,
     branding,
     emailMarketing,
-    blogSetup,
     seo,
     maintenance,
     googleMyBusiness,

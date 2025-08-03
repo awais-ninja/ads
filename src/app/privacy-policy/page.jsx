@@ -5,10 +5,8 @@ import {
   FaUserCheck,
   FaGavel,
   FaEnvelope,
-  FaGlobe,
   FaCookieBite,
   FaEdit,
-  FaMapMarkerAlt,
   FaGlobeEurope,
 } from "react-icons/fa";
 import React from "react";

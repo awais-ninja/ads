@@ -28,52 +28,33 @@ export default function Services() {
             succeed in the digital world.
           </motion.p>
         </div>
-
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 md:gap-8 lg:gap-10">
-          {services.map((service) => {
-            const Icon = service.icon;
-            return (
-              <motion.div
-                key={service.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300"
-              >
-                <div className="mb-6 text-red">
-                  <Icon className="h-10 w-10" />
-                </div>
-                <h3 className="text-lg sm:text-xl font-semibold text-navy mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-base text-gray-800 mb-6">
-                  {service.description}
-                </p>
-                <Link
-                  href={service.linkHref}
-                  className="inline-flex items-center text-red font-semibold hover:text-navy transition-colors duration-300"
-                  aria-label={service.linkText}
+        <Link href="/services" aria-label="See all services">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 md:gap-8 lg:gap-10">
+            {services.map((service) => {
+              const Icon = service.icon;
+              return (
+                <motion.div
+                  key={service.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300"
                 >
-                  {service.linkText}
-                  <svg
-                    className="w-4 h-4 ml-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </Link>
-              </motion.div>
-            );
-          })}
-        </div>
+                  <div className="mb-6 text-red">
+                    <Icon className="h-10 w-10" />
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-semibold text-navy mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-base text-gray-800 mb-6">
+                    {service.description}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </Link>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -85,9 +66,9 @@ export default function Services() {
           <Link
             href="/contact"
             className="inline-block bg-red text-white font-semibold px-8 py-3 rounded-lg hover:bg-navy transition-colors duration-300"
-            aria-label="Schedule a consultation to discuss your digital needs"
+            aria-label="Schedule a Meeting"
           >
-            Schedule a consultation to discuss your digital needs
+            Schedule a Meeting
           </Link>
         </motion.div>
       </div>
