@@ -224,7 +224,7 @@ export default function Footer() {
               className="hover:underline"
               aria-label="Read our Privacy Policy"
             >
-              Privacy Policy
+              Read Privacy Policy
             </Link>
             <span>|</span>
             <Link
@@ -232,7 +232,7 @@ export default function Footer() {
               className="hover:underline"
               aria-label="Read our Terms and Conditions"
             >
-              Terms &amp; Conditions
+              Read Terms &amp; Conditions
             </Link>
             <span>|</span>
             <Link
@@ -240,7 +240,7 @@ export default function Footer() {
               className="hover:underline"
               aria-label="Read our Cookie Policy"
             >
-              Cookie Policy
+              Read Cookie Policy
             </Link>
           </div>
           <div className="text-xs text-white">
