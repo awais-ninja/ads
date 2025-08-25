@@ -3,7 +3,7 @@ const nextConfig = {
   async headers() {
     const cspHeader = `
       default-src 'self';
-      script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://client.crisp.chat https://settings.crisp.chat https://va.vercel-scripts.com;
+      script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://client.crisp.chat https://settings.crisp.chat https://va.vercel-scripts.com https://connect.facebook.net;
       style-src 'self' 'unsafe-inline' https://client.crisp.chat;
       img-src 'self' blob: data: https://image.crisp.chat;
       font-src 'self' https://client.crisp.chat;
