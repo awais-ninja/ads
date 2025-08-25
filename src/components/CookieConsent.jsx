@@ -11,6 +11,7 @@ import {
   clearConsentCookies,
   initializeNecessaryCookies,
 } from "@/lib/cookies";
+import Link from "./Link";
 
 export default function CookieConsent() {
   const [showBanner, setShowBanner] = useState(false);
@@ -170,9 +171,12 @@ export default function CookieConsent() {
                   We use cookies to enhance your browsing experience, analyze
                   site traffic, and personalize content. By clicking "Accept
                   All", you consent to our use of cookies.
-                  <a href="/cookie-policy" className="text-red underline ml-1">
-                    Learn more
-                  </a>
+                  <Link
+                    href="/cookie-policy"
+                    className="text-red underline ml-1"
+                  >
+                    Read Cookie Policy
+                  </Link>
                 </p>
               </div>
             </div>

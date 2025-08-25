@@ -211,7 +211,7 @@ export default function BlogFilterClient({ posts, categories }) {
                     </div>
                     <div className="flex items-center justify-between mt-auto pt-2 border-t border-gray-100">
                       <span className="text-red font-semibold text-xs group-hover:translate-x-1 transition-transform duration-300">
-                        Read More
+                        Read Full Article
                       </span>
                       <FaArrowRight className="text-red text-xs group-hover:translate-x-1 transition-transform duration-300" />
                     </div>
