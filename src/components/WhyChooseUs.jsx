@@ -51,18 +51,10 @@ export default function WhyChooseUs() {
               <div className="mb-6 text-red" aria-hidden="true">
                 <benefit.icon className="h-10 w-10" />
               </div>
-              <h3
-                className="text-lg sm:text-xl font-semibold text-navy mb-3"
-                style={{ color: "#1a237e" }}
-              >
+              <h3 className="text-lg sm:text-xl font-semibold text-navy mb-3">
                 {benefit.title}
               </h3>
-              <p
-                className="text-base text-gray-600"
-                style={{ color: "#374151" }}
-              >
-                {benefit.description}
-              </p>
+              <p className="text-base text-gray-600">{benefit.description}</p>
             </motion.div>
           ))}
         </div>

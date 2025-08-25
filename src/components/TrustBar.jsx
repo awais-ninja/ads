@@ -52,9 +52,6 @@ const TrustBar = () => {
               custom={index}
               variants={iconVariants}
               className="flex flex-col items-center bg-gradient-to-br from-white to-blue-50 rounded-3xl p-8 shadow-lg border border-blue-100 hover:shadow-2xl hover:border-blue-400 transition-all duration-300 group gap-4 text-center focus-within:ring-2 focus-within:ring-blue-400"
-              style={{
-                background: "linear-gradient(135deg, #fff 60%, #f0f6ff 100%)",
-              }}
               role="region"
               aria-label={`${item.text} - ${item.desc}`}
               tabIndex={0}
@@ -66,16 +63,10 @@ const TrustBar = () => {
                 {item.icon}
               </span>
               <div className="max-w-md">
-                <p
-                  className="font-semibold text-navy text-base mb-2"
-                  style={{ color: "#1a237e" }}
-                >
+                <p className="font-semibold text-navy text-base mb-2">
                   {item.text}
                 </p>
-                <p
-                  className="text-base text-gray-800 text-base leading-relaxed"
-                  style={{ color: "#1f2937" }}
-                >
+                <p className="text-base text-gray-800 text-base leading-relaxed">
                   {item.desc}
                 </p>
               </div>

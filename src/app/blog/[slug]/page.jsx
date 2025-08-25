@@ -224,10 +224,7 @@ export default async function BlogPostPage({ params }) {
             </div>
 
             {/* Markdown Content - All Black Text */}
-            <div
-              className="max-w-none mx-auto bg-white dark:bg-neutral-900 rounded-xl shadow-lg px-1 md:px-6 py-6 md:py-10 text-black dark:text-white text-[1.15rem] leading-8 font-sans"
-              style={{ fontFamily: "Inter, Arial, sans-serif" }}
-            >
+            <div className="max-w-none mx-auto bg-white dark:bg-neutral-900 rounded-xl shadow-lg px-1 md:px-6 py-6 md:py-10 text-black dark:text-white text-[1.15rem] leading-8 font-sans font-inter">
               <ReactMarkdown
                 components={{
                   h1: ({ node, ...props }) => (

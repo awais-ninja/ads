@@ -27,7 +27,7 @@ export default function ProjectPage({ params }) {
       <section className="relative min-h-[90vh] flex items-center overflow-hidden">
         {/* Animated Background */}
         <motion.div
-          style={{ y: backgroundY, opacity }}
+          animate={{ y: backgroundY, opacity }}
           className="absolute inset-0 bg-gradient-to-br from-navy/10 to-red/10"
         />
 

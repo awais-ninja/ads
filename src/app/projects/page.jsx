@@ -131,7 +131,7 @@ export default function ProjectsPage() {
       <section className="relative min-h-[80vh] flex items-center overflow-hidden">
         {/* Animated Background */}
         <motion.div
-          style={{ y: backgroundY, opacity }}
+          animate={{ y: backgroundY, opacity }}
           className="absolute inset-0 bg-gradient-to-br from-navy/5 to-red/5"
         />
 
@@ -155,8 +155,6 @@ export default function ProjectsPage() {
                 className="border border-navy/10"
                 style={{
                   background: gridColors[i % gridColors.length],
-                  opacity: 0,
-                  transform: "scale(0.8)",
                 }}
               />
             ))}
@@ -210,8 +208,6 @@ export default function ProjectsPage() {
                 border: circleStyles[i].border,
                 left: circleStyles[i].left,
                 top: circleStyles[i].top,
-                opacity: 0,
-                transform: "scale(0)",
               }}
             />
           ))}

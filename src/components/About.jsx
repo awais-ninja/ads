@@ -45,11 +45,7 @@ export default function About() {
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute top-0 left-0 w-full h-full"
-          style={{
-            background:
-              "radial-gradient(circle at 30% 20%, rgba(255, 59, 48, 0.1) 0%, transparent 50%)",
-          }}
+          className="absolute top-0 left-0 w-full h-full bg-gradient-radial from-red/10 to-transparent"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.5, 0.3],
@@ -61,11 +57,7 @@ export default function About() {
           }}
         />
         <motion.div
-          className="absolute bottom-0 right-0 w-full h-full"
-          style={{
-            background:
-              "radial-gradient(circle at 70% 80%, rgba(255, 59, 48, 0.1) 0%, transparent 50%)",
-          }}
+          className="absolute bottom-0 right-0 w-full h-full bg-gradient-radial from-red/10 to-transparent"
           animate={{
             scale: [1, 1.3, 1],
             opacity: [0.3, 0.5, 0.3],

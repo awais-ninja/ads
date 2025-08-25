@@ -108,10 +108,7 @@ export default function Testimonials() {
                         <FaQuoteLeft className="w-6 h-6" />
                       </div>
                       <div>
-                        <p
-                          className="text-gray-800 mb-6"
-                          style={{ color: "#1f2937" }}
-                        >
+                        <p className="text-gray-800 mb-6">
                           {testimonial.quote}
                         </p>
                         <div className="flex items-center gap-3">

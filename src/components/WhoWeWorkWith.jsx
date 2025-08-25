@@ -120,10 +120,7 @@ export default function WhoWeWorkWith() {
               >
                 {item.icon}
               </span>
-              <span
-                className="font-semibold text-navy text-base mb-1"
-                style={{ color: "#1a237e" }}
-              >
+              <span className="font-semibold text-navy text-base mb-1">
                 {item.label}
               </span>
             </motion.div>

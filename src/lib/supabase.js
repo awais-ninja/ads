@@ -18,7 +18,6 @@ try {
       persistSession: false,
     },
   });
-  console.log("Supabase client initialized successfully");
 } catch (error) {
   console.error("Error initializing Supabase client:", error);
 }

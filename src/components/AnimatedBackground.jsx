@@ -71,11 +71,7 @@ export default function AnimatedBackground() {
 
   return (
     <>
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 z-0"
-        style={{ opacity: 0.3 }}
-      />
+      <canvas ref={canvasRef} className="absolute inset-0 z-0 opacity-30" />
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-navy/10"

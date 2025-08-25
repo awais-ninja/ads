@@ -8,6 +8,8 @@ import {
   FaFacebook,
   FaInstagram,
   FaLinkedin,
+  FaYoutube,
+  FaTwitter,
 } from "react-icons/fa";
 
 const services = [
@@ -82,6 +84,24 @@ export default function Footer() {
                 aria-label="Connect with Awais Digital Services on LinkedIn"
               >
                 <FaLinkedin className="w-6 h-6" />
+              </Link>
+              <Link
+                href="https://www.youtube.com/@awaisdigitalservices"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:hover:text-blue-300 transition-colors"
+                aria-label="Subscribe to Awais Digital Services on YouTube"
+              >
+                <FaYoutube className="w-6 h-6" />
+              </Link>
+              <Link
+                href="https://twitter.com/awaisdigitalservices"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:hover:text-blue-300 transition-colors"
+                aria-label="Follow Awais Digital Services on X (Twitter)"
+              >
+                <FaTwitter className="w-6 h-6" />
               </Link>
             </div>
           </div>

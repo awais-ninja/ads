@@ -105,15 +105,10 @@ export default function ContactPage() {
               className="text-green-500 text-4xl mb-2 group-hover:scale-110 transition-transform"
               aria-hidden="true"
             />
-            <span
-              className="font-bold text-navy text-lg mb-1"
-              style={{ color: "#1a237e" }}
-            >
+            <span className="font-bold text-navy text-lg mb-1">
               WhatsApp Chat
             </span>
-            <span className="text-gray-600 mb-2" style={{ color: "#374151" }}>
-              +44 7443 098117
-            </span>
+            <span className="text-gray-600 mb-2">+44 7443 098117</span>
             <span className="inline-block px-6 py-2 bg-green-500 text-white rounded-full font-semibold mt-2 group-hover:bg-navy transition">
               Chat Now
             </span>
@@ -129,13 +124,8 @@ export default function ContactPage() {
               className="text-blue-500 text-4xl mb-2 group-hover:scale-110 transition-transform"
               aria-hidden="true"
             />
-            <span
-              className="font-bold text-navy text-lg mb-1"
-              style={{ color: "#1a237e" }}
-            >
-              Email Us
-            </span>
-            <span className="text-gray-600 mb-2" style={{ color: "#374151" }}>
+            <span className="font-bold text-navy text-lg mb-1">Email Us</span>
+            <span className="text-gray-600 mb-2">
               info@awaisdigitalservices.co.uk
             </span>
             <span className="inline-block px-6 py-2 bg-blue-500 text-white rounded-full font-semibold mt-2 group-hover:bg-navy transition">
@@ -153,15 +143,8 @@ export default function ContactPage() {
               className="text-red text-4xl mb-2 group-hover:scale-110 transition-transform"
               aria-hidden="true"
             />
-            <span
-              className="font-bold text-navy text-lg mb-1"
-              style={{ color: "#1a237e" }}
-            >
-              Call Us
-            </span>
-            <span className="text-gray-600 mb-2" style={{ color: "#374151" }}>
-              +44 7780 059219
-            </span>
+            <span className="font-bold text-navy text-lg mb-1">Call Us</span>
+            <span className="text-gray-600 mb-2">+44 7780 059219</span>
             <span className="inline-block px-6 py-2 bg-red text-white rounded-full font-semibold mt-2 group-hover:bg-navy transition">
               Call Now
             </span>
@@ -170,10 +153,7 @@ export default function ContactPage() {
       </section>
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 max-w-2xl">
-          <h2
-            className="text-2xl md:text-3xl font-bold text-navy mb-6 text-center"
-            style={{ color: "#1a237e" }}
-          >
+          <h2 className="text-2xl md:text-3xl font-bold text-navy mb-6 text-center">
             Send Us a Message
           </h2>
           <ContactForm />

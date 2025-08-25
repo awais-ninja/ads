@@ -154,7 +154,6 @@ export default function Pricing() {
                   ? "md:scale-110 md:shadow-2xl border-red ring-2 ring-yellow-200"
                   : ""
               }`}
-              style={{ minWidth: 0, flex: 1 }}
               role="region"
               aria-label={`${pkg.name} - ${pkg.tagline}`}
             >
@@ -180,12 +179,7 @@ export default function Pricing() {
               <div className="flex justify-center mb-4 mt-8" aria-hidden="true">
                 {pkg.icon}
               </div>
-              <h3
-                className="text-xl font-bold text-navy mb-2"
-                style={{ color: "#1a237e" }}
-              >
-                {pkg.name}
-              </h3>
+              <h3 className="text-xl font-bold text-navy mb-2">{pkg.name}</h3>
               <div
                 className="text-2xl font-bold text-gray-700 line-through mb-0.5"
                 aria-label={`Original price: ${pkg.originalPrice}`}
@@ -201,16 +195,10 @@ export default function Pricing() {
                   Limited Time
                 </span>
               </div>
-              <div
-                className="text-sm text-gray-700 mb-2 font-medium"
-                style={{ color: "#374151" }}
-              >
+              <div className="text-sm text-gray-700 mb-2 font-medium">
                 {pkg.tagline}
               </div>
-              <p
-                className="text-gray-800 mb-4 text-sm min-h-[56px]"
-                style={{ color: "#1f2937" }}
-              >
+              <p className="text-gray-800 mb-4 text-sm min-h-[56px]">
                 {pkg.description}
               </p>
               <ul className="text-left mb-6 space-y-2">
@@ -218,7 +206,6 @@ export default function Pricing() {
                   <li
                     key={i}
                     className="flex items-center gap-2 text-gray-800 text-sm"
-                    style={{ color: "#1f2937" }}
                   >
                     <span
                       className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-navy/10 text-red"

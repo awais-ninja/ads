@@ -21,10 +21,9 @@ const DynamicFAQ = dynamic(() => import("@/components/FAQ"), {
 });
 
 export const metadata = {
-  title:
-    "Home | Affordable Website Design & Marketing Services for UK Small Businesses | Awais Digital Services (ADS)",
+  title: "Affordable Website Design & Marketing Services UK | ADS",
   description:
-    "ADS builds affordable, SEO-optimized websites, branding, and digital marketing campaigns for startups and small businesses across the UK. Boost your online presence today with our expert team.",
+    "ADS builds affordable, SEO-optimized websites, branding, and digital marketing for UK startups and small businesses. Boost your online presence today.",
   keywords: [
     "affordable website design UK",
     "web design for startups",
