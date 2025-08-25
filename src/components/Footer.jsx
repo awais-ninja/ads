@@ -219,15 +219,27 @@ export default function Footer() {
             Serving Startups, Entrepreneurs, and Small Businesses across the UK.
           </div>
           <div className="flex flex-wrap justify-center gap-4 mb-2 text-xs text-blue-200">
-            <Link href="/privacy-policy" className="hover:underline">
+            <Link
+              href="/privacy-policy"
+              className="hover:underline"
+              aria-label="Read our Privacy Policy"
+            >
               Privacy Policy
             </Link>
             <span>|</span>
-            <Link href="/terms-and-conditions" className="hover:underline">
+            <Link
+              href="/terms-and-conditions"
+              className="hover:underline"
+              aria-label="Read our Terms and Conditions"
+            >
               Terms &amp; Conditions
             </Link>
             <span>|</span>
-            <Link href="/cookie-policy" className="hover:underline">
+            <Link
+              href="/cookie-policy"
+              className="hover:underline"
+              aria-label="Read our Cookie Policy"
+            >
               Cookie Policy
             </Link>
           </div>

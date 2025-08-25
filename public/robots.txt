@@ -1,36 +1,9 @@
+# *
 User-agent: *
 Allow: /
 
-# Sitemap
+# Host
+Host: https://awaisdigitalservices.co.uk
+
+# Sitemaps
 Sitemap: https://awaisdigitalservices.co.uk/sitemap.xml
-
-# Crawl-delay for respectful crawling
-Crawl-delay: 1
-
-# Disallow admin and private areas
-Disallow: /admin/
-Disallow: /private/
-Disallow: /api/
-Disallow: /_next/
-Disallow: /static/
-
-# Allow important pages
-Allow: /services/
-Allow: /projects/
-Allow: /blog/
-Allow: /pricing/
-Allow: /contact/
-Allow: /about/
-
-# Block common bot patterns
-User-agent: GPTBot
-Disallow: /
-
-User-agent: ChatGPT-User
-Disallow: /
-
-User-agent: CCBot
-Disallow: /
-
-User-agent: anthropic-ai
-Disallow: /

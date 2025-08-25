@@ -24,7 +24,7 @@ const Portfolio = () => {
             Our <span className="text-red">Projects</span>
           </h2>
           <p className="text-base text-gray-600 max-w-2xl mx-auto">
-            We're proud to help businesses across the UK grow online. Here's a
+            We're proud to help businesses across the UK grow online. Below is a
             sample of the recent work delivered by ADS.
           </p>
         </div>
@@ -62,9 +62,9 @@ const Portfolio = () => {
                 <Link
                   href={`/projects/${project.id}`}
                   className="inline-flex items-center text-blue-700 font-medium hover:text-blue-900 transition-colors"
-                  aria-label={`View project`}
+                  aria-label={`View full details of ${project.title} project`}
                 >
-                  View More
+                  View Project Details
                   <svg
                     className="w-4 h-4 ml-1"
                     fill="none"

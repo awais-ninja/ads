@@ -319,6 +319,7 @@ export default async function BlogPostPage({ params }) {
                   img: ({ node, ...props }) => (
                     <img
                       className="rounded-xl shadow-md my-8 mx-auto"
+                      alt={props.alt || "Blog post image"}
                       {...props}
                     />
                   ),

@@ -55,7 +55,11 @@ const faqs = [
           WhatsApp
         </Link>
         (
-        <Link href="tel:+447443098117" className="underline hover:text-red">
+        <Link
+          href="tel:+447443098117"
+          className="underline hover:text-red"
+          aria-label="Call us at +44 7443 098117"
+        >
           +44 7443 098117
         </Link>
         ),
