@@ -54,12 +54,16 @@ export default function CookieConsent() {
 
     if (userConsent.analytics) {
       // Enable Google Analytics
-      if (typeof window !== "undefined" && window.gtag) {
+      if (
+        typeof window !== "undefined" &&
+        window.gtag &&
+        process.env.NEXT_PUBLIC_GA_ID
+      ) {
         window.gtag("consent", "update", {
           analytics_storage: "granted",
         });
         // Initialize Google Analytics only when consent is granted
-        window.gtag("config", "G-X79SQJVGJ5");
+        window.gtag("config", process.env.NEXT_PUBLIC_GA_ID);
       }
       // Set an example analytics cookie
       setAnalyticsCookie("example", "1", 365);

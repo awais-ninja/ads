@@ -8,7 +8,6 @@ import {
   FaPenNib,
   FaChartLine,
   FaMobileAlt,
-  FaBlog,
   FaMapMarkerAlt,
   FaTachometerAlt,
   FaFacebook,
@@ -186,23 +185,7 @@ export const services = [
     linkText: "Explore our mobile app development services",
     linkHref: "/services",
   },
-  {
-    id: "content",
-    icon: FaBlog,
-    title: "Content Creation",
-    subtitle: "Engaging Content for Your Digital Channels",
-    description:
-      "Professional content creation services to engage your audience, build authority, and drive conversions.",
-    features: [
-      "Blog Writing",
-      "Social Media Content",
-      "Product Descriptions",
-      "Case Studies",
-    ],
-    iconBg: "bg-navy",
-    linkText: "View our content creation services",
-    linkHref: "/services",
-  },
+
   {
     id: "local-seo",
     icon: FaMapMarkerAlt,

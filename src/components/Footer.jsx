@@ -14,19 +14,19 @@ import {
 
 const services = [
   {
-    name: "Website Design for UK Businesses",
+    name: "Website Design",
     href: "/services#website-design",
   },
   {
-    name: "Branding Services for Startups",
+    name: "Branding Services",
     href: "/services#branding",
   },
   {
-    name: "Email Marketing Setup",
+    name: "Email Marketing",
     href: "/services#email-marketing",
   },
   {
-    name: "Website Care & Maintenance Plans",
+    name: "Care & Maintenance",
     href: "/services#care-plans",
   },
 ];
@@ -48,7 +48,8 @@ export default function Footer() {
                 alt="Awais Digital Services"
                 width={280}
                 height={70}
-                className="h-12 md:h-16 w-auto"
+                className="h-12 md:h-16"
+                style={{ width: "auto" }}
                 priority
               />
             </Link>
@@ -154,7 +155,7 @@ export default function Footer() {
           {/* Services */}
           <div className="flex flex-col items-center md:items-start">
             <h3 className="text-lg sm:text-xl font-semibold text-white mb-3">
-              Our Services
+              Services
             </h3>
             <ul className="space-y-3">
               {services.map((service) => (

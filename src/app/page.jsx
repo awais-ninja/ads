@@ -5,6 +5,7 @@ import WhoWeWorkWith from "@/components/WhoWeWorkWith";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import Pricing from "@/components/Pricing";
 import FinalCTA from "@/components/FinalCTA";
+import FAQSchema from "@/components/FAQSchema";
 import dynamic from "next/dynamic";
 
 // Dynamically import components that are not immediately visible
@@ -38,13 +39,13 @@ export const metadata = {
       "Affordable Website Design & Marketing | Awais Digital Services (ADS)",
     description:
       "Awais Digital Services provides expert website development, branding, and SEO for startups and small businesses in the UK. Get a conversion-focused website today.",
-    url: "https://awaisdigitalservices.co.uk/",
+    url: "https://www.awaisdigitalservices.co.uk/",
     siteName: "Awais Digital Services",
     locale: "en_GB",
     type: "website",
     images: [
       {
-        url: "https://awaisdigitalservices.co.uk/og.jpg", // Replace with your real OG image
+        url: "https://www.awaisdigitalservices.co.uk/og.jpg",
         width: 1200,
         height: 630,
         alt: "ADS - Website Design and Marketing UK",
@@ -56,7 +57,7 @@ export const metadata = {
     title: "Affordable Website Design & Marketing | ADS UK",
     description:
       "Get expert websites, SEO, branding, and email marketing tailored for UK startups and small businesses. Contact Awais Digital Services today.",
-    images: ["https://awaisdigitalservices.co.uk/og.jpg"],
+    images: ["https://www.awaisdigitalservices.co.uk/og.jpg"],
   },
 };
 
@@ -68,6 +69,7 @@ export const viewport = {
 export default function Home() {
   return (
     <main className="pt-20 md:pt-14">
+      <FAQSchema />
       <Hero />
       <TrustBar />
       <Services />

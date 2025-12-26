@@ -44,9 +44,9 @@ export const metadata = {
   authors: [{ name: "Awais Digital Services" }],
   creator: "Awais Digital Services",
   publisher: "Awais Digital Services",
-  metadataBase: new URL("https://awaisdigitalservices.co.uk"),
+  metadataBase: new URL("https://www.awaisdigitalservices.co.uk"),
   alternates: {
-    canonical: "https://awaisdigitalservices.co.uk",
+    canonical: "https://www.awaisdigitalservices.co.uk",
   },
   icons: {
     icon: "/favicon.ico",
@@ -57,11 +57,11 @@ export const metadata = {
     title: "Awais Digital Services (ADS)",
     description:
       "Affordable website design and digital marketing services for startups and small businesses in the UK.",
-    url: "https://awaisdigitalservices.co.uk",
+    url: "https://www.awaisdigitalservices.co.uk",
     siteName: "Awais Digital Services",
     images: [
       {
-        url: "https://awaisdigitalservices.co.uk/og.jpg",
+        url: "https://www.awaisdigitalservices.co.uk/og.jpg",
         width: 1200,
         height: 630,
         alt: "Awais Digital Services",
@@ -75,7 +75,7 @@ export const metadata = {
     title: "Awais Digital Services (ADS)",
     description:
       "Affordable website design & digital marketing services in the UK.",
-    images: ["https://awaisdigitalservices.co.uk/og.jpg"],
+    images: ["https://www.awaisdigitalservices.co.uk/og.jpg"],
     creator: "@awaisdigitalservices",
     site: "@awaisdigitalservices",
   },
@@ -100,51 +100,62 @@ export default function RootLayout({ children }) {
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://client.crisp.chat" />
 
         {/* Google Tag Manager (gtag.js) - Load but don't track until consent */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-X79SQJVGJ5"
-          strategy="afterInteractive"
-        />
-        <Script id="gtag-init" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            
-            // Initialize with denied consent by default (GDPR compliant)
-            // DO NOT call gtag('config') until consent is granted
-            gtag('consent', 'default', {
-              'analytics_storage': 'denied',
-              'ad_storage': 'denied',
-              'wait_for_update': 500
-            });
-            
-            // Check for existing consent on page load with delay
-            setTimeout(() => {
-              const gtagConsent = localStorage.getItem('cookie-consent');
-              if (gtagConsent) {
-                try {
-                  const consent = JSON.parse(gtagConsent);
-                  if (consent.analytics) {
-                    // Only initialize GA if analytics consent is granted
-                    gtag('consent', 'update', {
-                      'analytics_storage': 'granted'
-                    });
-                    gtag('config', 'G-X79SQJVGJ5');
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="gtag-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                
+                // Set consent to denied by default (GDPR compliant)
+                gtag('consent', 'default', {
+                  'analytics_storage': 'denied',
+                  'ad_storage': 'denied',
+                  'wait_for_update': 500
+                });
+                
+                // Initialize GA config (required for GA to show as active)
+                // Data collection is still blocked until consent is granted
+                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
+                  'anonymize_ip': true
+                });
+                
+                // Check for existing consent on page load with delay
+                setTimeout(() => {
+                  const gtagConsent = localStorage.getItem('cookie-consent');
+                  if (gtagConsent) {
+                    try {
+                      const consent = JSON.parse(gtagConsent);
+                      if (consent.analytics) {
+                        // Enable analytics tracking when consent is granted
+                        gtag('consent', 'update', {
+                          'analytics_storage': 'granted'
+                        });
+                      }
+                      if (consent.marketing) {
+                        gtag('consent', 'update', {
+                          'ad_storage': 'granted'
+                        });
+                      }
+                    } catch (error) {
+                      console.error('Error parsing saved consent for GTM:', error);
+                    }
                   }
-                  if (consent.marketing) {
-                    gtag('consent', 'update', {
-                      'ad_storage': 'granted'
-                    });
-                  }
-                } catch (error) {
-                  console.error('Error parsing saved consent for GTM:', error);
-                }
-              }
-            }, 1000);
-          `}
-        </Script>
+                }, 1000);
+              `}
+            </Script>
+          </>
+        )}
 
         {/* Crisp Chat Integration - Load but don't track until consent */}
         <Script id="crisp-widget" strategy="afterInteractive">
@@ -178,6 +189,39 @@ export default function RootLayout({ children }) {
           `}
         </Script>
 
+        {/* Organization Schema Markup */}
+        <Script
+          id="organization-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Awais Digital Services (ADS)",
+              legalName: "Awais Digital Services",
+              url: "https://www.awaisdigitalservices.co.uk",
+              logo: "https://www.awaisdigitalservices.co.uk/logo-web.svg",
+              image: "https://www.awaisdigitalservices.co.uk/og.jpg",
+              description:
+                "Affordable website design, branding, and digital marketing services for UK startups and small businesses",
+              telephone: "+44-7780-059219",
+              email: "info@awaisdigitalservices.co.uk",
+              address: {
+                "@type": "PostalAddress",
+                addressCountry: "GB",
+                addressRegion: "United Kingdom",
+              },
+              sameAs: [
+                "https://www.facebook.com/MirzaAwais420",
+                "https://www.instagram.com/mirza.awais.official",
+                "https://www.linkedin.com/company/awais-digital-services",
+                "https://www.youtube.com/@awaisdigitalservices",
+                "https://twitter.com/awaisdigitalservices",
+              ],
+            }),
+          }}
+        />
+
         {/* Local Business Schema Markup */}
         <Script
           id="local-business-schema"
@@ -189,10 +233,10 @@ export default function RootLayout({ children }) {
               name: "Awais Digital Services (ADS)",
               description:
                 "Affordable website design, branding, and digital marketing services for UK startups and small businesses",
-              url: "https://awaisdigitalservices.co.uk",
-              logo: "https://awaisdigitalservices.co.uk/logo-web.svg",
-              image: "https://awaisdigitalservices.co.uk/og.jpg",
-              telephone: "+44-XXX-XXX-XXXX",
+              url: "https://www.awaisdigitalservices.co.uk",
+              logo: "https://www.awaisdigitalservices.co.uk/logo-web.svg",
+              image: "https://www.awaisdigitalservices.co.uk/og.jpg",
+              telephone: "+44-7780-059219",
               email: "info@awaisdigitalservices.co.uk",
               address: {
                 "@type": "PostalAddress",
@@ -240,49 +284,84 @@ export default function RootLayout({ children }) {
                 ],
               },
               sameAs: [
-                "https://facebook.com/MirzaAwais420",
-                "https://instagram.com/mirza.awais.official",
-                "https://linkedin.com/company/awais-digital-services",
-                "https://youtube.com/@awaisdigitalservices",
+                "https://www.facebook.com/MirzaAwais420",
+                "https://www.instagram.com/mirza.awais.official",
+                "https://www.linkedin.com/company/awais-digital-services",
+                "https://www.youtube.com/@awaisdigitalservices",
                 "https://twitter.com/awaisdigitalservices",
               ],
             }),
           }}
         />
 
+        {/* Website Schema Markup */}
+        <Script
+          id="website-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Awais Digital Services",
+              url: "https://www.awaisdigitalservices.co.uk",
+              description:
+                "Affordable website design, branding, and digital marketing services for UK startups and small businesses",
+              publisher: {
+                "@type": "Organization",
+                name: "Awais Digital Services",
+                logo: {
+                  "@type": "ImageObject",
+                  url: "https://www.awaisdigitalservices.co.uk/logo-web.svg",
+                },
+              },
+              potentialAction: {
+                "@type": "SearchAction",
+                target: {
+                  "@type": "EntryPoint",
+                  urlTemplate:
+                    "https://www.awaisdigitalservices.co.uk/search?q={search_term_string}",
+                },
+                "query-input": "required name=search_term_string",
+              },
+            }),
+          }}
+        />
+
         {/* Facebook Pixel - Load but don't track until consent */}
-        <Script id="facebook-pixel" strategy="afterInteractive">
-          {`
-            !function(f,b,e,v,n,t,s)
-            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-            n.queue=[];t=b.createElement(e);t.async=!0;
-            t.src=v;s=b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t,s)}(window, document,'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-            
-            // Initialize with denied consent by default (GDPR compliant)
-            fbq('consent', 'revoke');
-            
-            // Check for existing consent on page load with delay
-            setTimeout(() => {
-              const pixelConsent = localStorage.getItem('cookie-consent');
-              if (pixelConsent) {
-                try {
-                  const consent = JSON.parse(pixelConsent);
-                  if (consent.marketing) {
-                    fbq('consent', 'grant');
-                    fbq('init', 'YOUR_PIXEL_ID'); // Replace with your actual Facebook Pixel ID
-                    fbq('track', 'PageView');
+        {process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID && (
+          <Script id="facebook-pixel" strategy="afterInteractive">
+            {`
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              
+              // Initialize with denied consent by default (GDPR compliant)
+              fbq('consent', 'revoke');
+              
+              // Check for existing consent on page load with delay
+              setTimeout(() => {
+                const pixelConsent = localStorage.getItem('cookie-consent');
+                if (pixelConsent) {
+                  try {
+                    const consent = JSON.parse(pixelConsent);
+                    if (consent.marketing) {
+                      fbq('consent', 'grant');
+                      fbq('init', '${process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID}');
+                      fbq('track', 'PageView');
+                    }
+                  } catch (error) {
+                    console.error('Error parsing saved consent for Facebook Pixel:', error);
                   }
-                } catch (error) {
-                  console.error('Error parsing saved consent for Facebook Pixel:', error);
                 }
-              }
-            }, 1000);
-          `}
-        </Script>
+              }, 1000);
+            `}
+          </Script>
+        )}
 
         {/* Performance Monitoring */}
         <Script id="performance-monitoring" strategy="afterInteractive">

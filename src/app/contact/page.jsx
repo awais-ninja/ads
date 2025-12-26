@@ -14,13 +14,13 @@ export const metadata = {
     title: "Contact ADS | Web Design, SEO, Branding & Marketing in the UK",
     description:
       "Speak directly with Awais Digital Services (ADS) — offering high-converting websites, SEO, branding, and marketing services in the UK. Free consultation available now.",
-    url: "awaisdigitalservices.co.uk",
+    url: "https://www.awaisdigitalservices.co.uk/contact",
     siteName: "Awais Digital Services",
     type: "website",
     locale: "en_GB",
     images: [
       {
-        url: "https://awaisdigitalservices.co.uk/og.jpg",
+        url: "https://www.awaisdigitalservices.co.uk/og.jpg",
         width: 1200,
         height: 630,
         alt: "Contact Awais Digital Services",
@@ -32,7 +32,7 @@ export const metadata = {
     title: "Contact ADS | Website, SEO, Branding & Marketing Services UK",
     description:
       "Connect with Awais Digital Services for expert websites, branding, SEO, and digital marketing in the UK. Message us directly on WhatsApp or email.",
-    images: ["https://awaisdigitalservices.co.uk/og.jpg"],
+    images: ["https://www.awaisdigitalservices.co.uk/og.jpg"],
   },
 };
 

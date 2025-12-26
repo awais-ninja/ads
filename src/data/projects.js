@@ -20,10 +20,7 @@ export const projects = [
       "/images/projects/aaziz/aaziz-about-4.jpg",
       "/images/projects/aaziz/aaziz-about-5.jpg",
       "/images/projects/aaziz/aaziz-about-6.jpg",
-      "/images/projects/aaziz/aaziz-blog-1.jpg",
-      "/images/projects/aaziz/aaziz-blog-2.jpg",
-      "/images/projects/aaziz/aaziz-blog-3.jpg",
-      "/images/projects/aaziz/aaziz-blog-4.jpg",
+
       "/images/projects/aaziz/aaziz-contact-1.jpg",
       "/images/projects/aaziz/aaziz-contact-2.jpg",
       "/images/projects/aaziz/aaziz-contact-3.jpg",
@@ -80,7 +77,6 @@ export const projects = [
       "Educational Content on Employment Rights & Protections",
       "Anonymous Contact & Support Request Form",
       "GDPR-Compliant Structure for Trust & Privacy",
-      "Blog Section with Ongoing Employment News & Guides",
       "SEO Strategy Using Legal Keywords and Long-Tail Phrases",
     ],
     impact: [

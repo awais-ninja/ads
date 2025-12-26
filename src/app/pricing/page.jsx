@@ -18,13 +18,13 @@ export const metadata = {
     title: "Transparent Pricing | Awais Digital Services UK",
     description:
       "Explore cost-effective website, SEO, and branding packages from ADS. Tailored for startups, small businesses, and local UK clients. View pricing plans now.",
-    url: "https://awaisdigitalservices.co.uk/pricing", // ✅ Replace with your actual domain path
+    url: "https://www.awaisdigitalservices.co.uk/pricing",
     siteName: "Awais Digital Services",
     locale: "en_GB",
     type: "website",
     images: [
       {
-        url: "https://awaisdigitalservices.co.uk/og.jpg", // ✅ Replace with your actual OG image
+        url: "https://www.awaisdigitalservices.co.uk/og.jpg",
         width: 1200,
         height: 630,
         alt: "Affordable Pricing - Awais Digital Services",
@@ -36,7 +36,7 @@ export const metadata = {
     title: "Pricing Plans | Affordable Website Design & Marketing UK",
     description:
       "No hidden costs. Just clear, honest pricing for websites, SEO, branding & more. Built for UK startups & businesses.",
-    images: ["https://awaisdigitalservices.co.uk/og.jpg"],
+    images: ["https://www.awaisdigitalservices.co.uk/og.jpg"],
   },
 };
 

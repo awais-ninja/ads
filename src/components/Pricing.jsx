@@ -14,8 +14,8 @@ import Link from "@/components/Link";
 const packages = [
   {
     name: "Starter Website Package",
-    price: "£199",
-    originalPrice: "£400",
+    price: "£149",
+    originalPrice: "£290",
     tagline: "Perfect for Startups and Entrepreneurs",
     icon: <FaSeedling className="text-green-500 text-3xl" />,
     features: [
@@ -35,8 +35,8 @@ const packages = [
   },
   {
     name: "Business Growth Package",
-    price: "£499",
-    originalPrice: "£700",
+    price: "299",
+    originalPrice: "£500",
     tagline: "Ideal for Growing Businesses",
     icon: <FaRocket className="text-red text-3xl" />,
     features: [
@@ -81,7 +81,7 @@ const addons = [
   {
     name: "Extra Website Page",
     price: "+£80 per page",
-    desc: "Expand your website's services or blog sections.",
+    desc: "Expand your website's services or additional pages.",
   },
   {
     name: "Advanced SEO Audit & Optimization",

@@ -120,13 +120,13 @@ NEXT_PUBLIC_FACEBOOK_PIXEL_ID=your_pixel_id
 
 1. **Link Building Strategy** (High Priority)
 
-   - Guest posting on relevant blogs
+   - Guest posting on relevant websites
    - Industry directory submissions
    - Partner website collaborations
 
 2. **Content Marketing** (Medium Priority)
 
-   - Regular blog posts
+   - Regular content updates
    - Case studies and testimonials
    - Industry insights and guides
 

@@ -71,8 +71,7 @@ export default function WhyChooseUs() {
             className="inline-block bg-red text-white font-semibold px-8 py-3 rounded-lg hover:bg-navy transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-red focus:ring-offset-2"
             aria-label="Start your digital transformation journey with Awais Digital Services"
           >
-            Start your digital transformation journey with Awais Digital
-            Services
+            Get Started Today
           </Link>
         </motion.div>
       </div>

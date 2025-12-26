@@ -11,13 +11,13 @@ export const metadata = {
     title: "Explore Our Digital Services | Awais Digital Services (ADS)",
     description:
       "We provide website design, eCommerce, branding, SEO, mobile apps, email marketing, and local SEO to help your business grow online in the UK.",
-    url: "https://awaisdigitalservices.co.uk/services",
+    url: "https://www.awaisdigitalservices.co.uk/services",
     siteName: "Awais Digital Services",
     type: "website",
     locale: "en_GB",
     images: [
       {
-        url: "https://awaisdigitalservices.co.uk/og.jpg",
+        url: "https://www.awaisdigitalservices.co.uk/og.jpg",
         width: 1200,
         height: 630,
         alt: "Digital Services by Awais Digital Services",
@@ -29,7 +29,7 @@ export const metadata = {
     title: "Our Services | Website, SEO & Branding UK | Awais Digital Services",
     description:
       "Comprehensive digital services for small businesses and startups in the UK. Web design, SEO, mobile apps, branding & more — trusted by UK entrepreneurs.",
-    images: ["https://awaisdigitalservices.co.uk/og.jpg"],
+    images: ["https://www.awaisdigitalservices.co.uk/og.jpg"],
   },
 };
 

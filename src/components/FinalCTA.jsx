@@ -53,9 +53,9 @@ export default function FinalCTA() {
             <Link
               href="/services"
               className="inline-flex items-center justify-center bg-white text-navy font-semibold px-8 py-3 rounded-lg hover:bg-gray-200 transition-colors duration-300"
-              aria-label="Explore Our Services"
+              aria-label="View All Services"
             >
-              Explore Our Services
+              View All Services
             </Link>
           </motion.div>
         </div>

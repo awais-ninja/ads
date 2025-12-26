@@ -15,7 +15,6 @@ const navItems = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
   { label: "Projects", href: "/projects" },
-  { label: "Blog", href: "/blog" },
   { label: "Pricing", href: "/pricing" },
   { label: "Contact", href: "/contact" },
 ];
@@ -38,7 +37,7 @@ export default function ModernNavbar() {
             width={160}
             height={40}
             priority
-            className="w-auto h-10"
+            className="h-10 w-auto"
           />
         </Link>
 
@@ -97,7 +96,7 @@ export default function ModernNavbar() {
               alt="Awais Digital Services Logo"
               width={160}
               height={40}
-              className="w-auto h-10"
+              className="h-10 w-auto"
             />
             <button
               className="text-gray-800"
