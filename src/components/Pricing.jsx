@@ -16,101 +16,105 @@ const packages = [
     name: "Starter Website Package",
     price: "£149",
     originalPrice: "£290",
-    tagline: "Perfect for Startups and Entrepreneurs",
+    tagline: "For New UK Businesses & Local Services",
     icon: <FaSeedling className="text-green-500 text-3xl" />,
     features: [
-      "Custom SEO-Optimized 3-Page Website for Small Businesses",
-      "Mobile-optimized and SEO-friendly",
-      "Contact Form Integration",
-      "WhatsApp Chat Integration",
-      "Basic On-Page SEO setup",
-      "1 free revision round",
+      "Professionally designed 3-page website (Home, Services, Contact)",
+      "UK local SEO setup (titles, meta descriptions, structure)",
+      "Mobile-first, fast-loading design",
+      "Contact & enquiry form integration",
+      "WhatsApp click-to-chat integration",
+      "Foundational on-page SEO optimisation",
+      "1 revision round",
     ],
     description:
-      "Get your business online fast with a beautiful, SEO-optimized website. Ideal for new businesses and startups who want to look professional and attract customers from day one.",
-    cta: "Start My Website",
-    waMsg: "Hi, I'm interested in the Starter Website Package!",
+      "A clean, professional website built to establish trust and rank locally in the UK. Ideal for startups, sole traders, and service businesses launching their online presence.",
+    cta: "Build My Website",
+    waMsg: "Hi, I'm interested in the Starter Website Package.",
     accent: "border-green-400 shadow-green-100",
-    badge: "Limited Time Launch Offer!",
+    badge: "Limited Time Launch Offer",
   },
   {
     name: "Business Growth Package",
-    price: "299",
+    price: "£299",
     originalPrice: "£500",
-    tagline: "Ideal for Growing Businesses",
+    tagline: "For Growing UK Businesses",
     icon: <FaRocket className="text-red text-3xl" />,
     features: [
-      "5–7 page fully custom, SEO-optimized website",
-      "Advanced SEO Setup for UK Businesses",
-      "Lead Generation Landing Page",
-      "Branding Kit (Logo, Colors, Fonts)",
-      "Basic Email Marketing Setup (Automated Welcome Series)",
-      "2 free revision rounds",
+      "5–7 page fully custom website built for conversions",
+      "UK SEO structure & keyword optimisation",
+      "Dedicated lead generation landing page",
+      "Professional branding kit (logo, colours, typography)",
+      "Email capture & automated welcome setup",
+      "Analytics & performance tracking setup",
+      "2 revision rounds",
     ],
     description:
-      "Upgrade your online presence and start generating leads. This package is perfect for businesses ready to grow, with advanced SEO, branding, and marketing tools included.",
-    cta: "Grow My Business Online",
-    waMsg: "Hi, I'm interested in the Business Growth Package!",
+      "A growth-focused website designed to generate enquiries, support marketing campaigns, and scale with your business. Built for UK search visibility and lead conversion.",
+    cta: "Grow My Business",
+    waMsg: "Hi, I'm interested in the Business Growth Package.",
     accent: "border-red shadow-red-100 scale-105 z-10",
     highlight: true,
-    badge: "Launch Discount Available!",
+    badge: "Launch Discount Available",
   },
   {
     name: "Full Digital Launch Package",
     price: "£999",
     originalPrice: "£1400",
-    tagline: "Best for Full Brand Launches",
+    tagline: "For Established Brands & Serious Growth",
     icon: <FaCrown className="text-yellow-400 text-3xl" />,
     features: [
-      "E-commerce Store Setup UK or Full Corporate Website (8+ pages)",
-      "Full Branding Kit (Logo, Colors, Typography)",
-      "Full Email Marketing System Setup",
-      "3 Months Website Care and Support (updates, backups, fixes)",
-      "3 free revision rounds",
+      "Full corporate website or UK e-commerce store (8+ pages)",
+      "Advanced technical & on-page SEO setup",
+      "Complete brand identity system",
+      "Email marketing system configuration",
+      "Conversion tracking & optimisation setup",
+      "3 months website care (updates, backups, fixes)",
+      "Priority support & 3 revision rounds",
     ],
     description:
-      "Launch your brand with everything you need for success online. Ideal for serious businesses who want a custom, SEO-optimized site, full branding, and ongoing support.",
-    cta: "Launch My Brand Today",
-    waMsg: "Hi, I'm interested in the Full Digital Launch Package!",
+      "A complete digital foundation for businesses that want authority, scalability, and long-term growth. Built to compete at a national level in the UK market.",
+    cta: "Launch My Brand",
+    waMsg: "Hi, I'm interested in the Full Digital Launch Package.",
     accent: "border-yellow-400 shadow-yellow-100",
-    badge: "Early Bird Special Pricing!",
+    badge: "Early Access Pricing",
   },
 ];
 
 const addons = [
   {
-    name: "Extra Website Page",
-    price: "+£80 per page",
-    desc: "Expand your website's services or additional pages.",
+    name: "Additional Website Pages",
+    price: "+£50 per page",
+    desc: "Add more services, locations, or content pages.",
   },
   {
-    name: "Advanced SEO Audit & Optimization",
-    price: "+£300",
-    desc: "Boost your website's Google rankings and visibility.",
+    name: "Advanced SEO Audit & Optimisation",
+    price: "+£100",
+    desc: "Technical, on-page, and content SEO improvements for UK rankings.",
   },
   {
     name: "Monthly Website Care Plan",
-    price: "£75/month",
-    desc: "Keep your website secure, updated, and running smoothly.",
+    price: "£50/month*",
+    desc: "Ongoing updates, security, backups, and performance monitoring.",
   },
 ];
 
 const whyPoints = [
   {
     icon: <FaCheckCircle className="text-green-500" />,
-    text: "✅ You will look professional in the UK market.",
+    text: "✅ Clear pricing that attracts serious UK business owners.",
   },
   {
     icon: <FaCheckCircle className="text-green-500" />,
-    text: "✅ You won't waste time talking to broke people.",
+    text: "✅ Professional positioning that builds trust with customers.",
   },
   {
     icon: <FaCheckCircle className="text-green-500" />,
-    text: "✅ You can still negotiate if a client is serious but asks for a discount.",
+    text: "✅ Flexible enough for genuine businesses with growth plans.",
   },
   {
     icon: <FaCheckCircle className="text-green-500" />,
-    text: "✅ You still undercut big agencies, who charge £3000–£8000 for the same.",
+    text: "✅ Significantly more affordable than large UK agencies charging £2,000–£4,000.",
   },
 ];
 
@@ -226,7 +230,7 @@ export default function Pricing() {
                 className="inline-flex items-center justify-center gap-2 bg-red text-white px-8 py-3 rounded-lg font-semibold hover:bg-navy transition-colors w-full"
                 aria-label={`Contact us on WhatsApp to discuss the ${pkg.name}`}
               >
-                Contact us on WhatsApp to discuss the {pkg.name}
+                Contact us now
                 <FaWhatsapp className="text-lg" />
               </Link>
             </motion.div>

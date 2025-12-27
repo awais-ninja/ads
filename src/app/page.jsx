@@ -71,13 +71,13 @@ export default function Home() {
     <main className="pt-20 md:pt-14">
       <FAQSchema />
       <Hero />
+      <Pricing />
+      <DynamicPortfolio />
       <TrustBar />
       <Services />
       <WhoWeWorkWith />
       <WhyChooseUs />
-      <DynamicPortfolio />
-      <Pricing />
-      <DynamicTestimonials />
+      {/*<DynamicTestimonials />*/}
       <FinalCTA />
       <DynamicFAQ />
     </main>

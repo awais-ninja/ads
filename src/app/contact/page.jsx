@@ -151,14 +151,15 @@ export default function ContactPage() {
           </Link>
         </div>
       </section>
-      <section className="py-16 bg-gray-50">
+
+      {/*<section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 max-w-2xl">
           <h2 className="text-2xl md:text-3xl font-bold text-navy mb-6 text-center">
             Send Us a Message
           </h2>
           <ContactForm />
         </div>
-      </section>
+      </section> */}
       <FinalCTA />
     </main>
   );
