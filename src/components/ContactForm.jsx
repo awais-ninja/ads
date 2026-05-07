@@ -1,6 +1,11 @@
 "use client";
 import { useState } from "react";
 import Link from "@/components/Link";
+import TurnstileWidget from "@/components/TurnstileWidget";
+
+const TURNSTILE_ENABLED =
+  process.env.NODE_ENV === "production" &&
+  Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
 
 // Validation helpers
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -37,6 +42,7 @@ export default function ContactForm({ variant = "default" }) {
     type: "Website",
   });
   const [privacyConsent, setPrivacyConsent] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -62,6 +68,10 @@ export default function ContactForm({ variant = "default" }) {
       setError(validationError);
       return;
     }
+    if (TURNSTILE_ENABLED && !turnstileToken) {
+      setError("Please complete the security check before submitting.");
+      return;
+    }
     setLoading(true);
     setError("");
 
@@ -69,7 +79,7 @@ export default function ContactForm({ variant = "default" }) {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, turnstileToken }),
       });
 
       const data = await res.json().catch(() => ({}));
@@ -222,6 +232,9 @@ export default function ContactForm({ variant = "default" }) {
             </Link>
           </label>
         </div>
+        {TURNSTILE_ENABLED && (
+          <TurnstileWidget onVerify={setTurnstileToken} className="flex justify-center" />
+        )}
         {error && (
           <p className="text-red-600 font-semibold text-sm">{error}</p>
         )}
@@ -365,6 +378,9 @@ export default function ContactForm({ variant = "default" }) {
           </Link>
         </label>
       </div>
+      {TURNSTILE_ENABLED && (
+        <TurnstileWidget onVerify={setTurnstileToken} />
+      )}
       {error && (
         <div className="text-red-600 font-semibold text-center">{error}</div>
       )}

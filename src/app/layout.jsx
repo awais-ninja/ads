@@ -26,6 +26,8 @@ const inter = Inter({
   preload: true,
 });
 
+const GA_ID = "G-X79SQJVGJ5";
+
 export const metadata = {
   title: {
     default: "Awais Digital Services (ADS) | Affordable Website Design UK",
@@ -91,6 +93,21 @@ export default function RootLayout({ children }) {
       data-scroll-behavior="smooth"
     >
       <head>
+        <Script
+          id="google-tag"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script
+          id="google-tag-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GA_ID}');`,
+          }}
+        />
         <meta
           name="google-site-verification"
           content="L1D89FtS1XdbxAxdZry_a5e4h87Clv7_05wYfxtDOrU"
@@ -248,13 +265,19 @@ export default function RootLayout({ children }) {
             }),
           }}
         />
-
       </head>
 
       <body
         className={`${inter.className} bg-white text-black`}
         suppressHydrationWarning
       >
+        <Script
+          id="cf-turnstile"
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+          strategy="afterInteractive"
+          async
+          defer
+        />
         <BreadcrumbSchema />
         <TrackingScripts />
         <Navbar />

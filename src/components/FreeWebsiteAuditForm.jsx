@@ -1,7 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import TurnstileWidget from "@/components/TurnstileWidget";
 
+const TURNSTILE_ENABLED =
+  process.env.NODE_ENV === "production" &&
+  Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 function isValidWebsiteUrl(url) {
   const u = url.trim();
@@ -19,6 +23,7 @@ export default function FreeWebsiteAuditForm() {
     websiteUrl: "",
     message: "",
   });
+  const [turnstileToken, setTurnstileToken] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -56,6 +61,10 @@ export default function FreeWebsiteAuditForm() {
       setError("Please enter a valid website URL (e.g. https://yoursite.com or www.yoursite.com).");
       return;
     }
+    if (TURNSTILE_ENABLED && !turnstileToken) {
+      setError("Please complete the security check before submitting.");
+      return;
+    }
     const displayUrl = websiteUrl.trim().startsWith("http") ? websiteUrl.trim() : `https://${websiteUrl.trim()}`;
     const fullMessage =
       message.length >= 10
@@ -75,6 +84,9 @@ export default function FreeWebsiteAuditForm() {
           phone: "",
           type: "Free Website Audit",
           message: fullMessage,
+          source: "Free Website Audit",
+          tags: "Audit Form",
+          turnstileToken,
         }),
       });
 
@@ -167,6 +179,9 @@ export default function FreeWebsiteAuditForm() {
           placeholder="Anything specific you'd like us to look at?"
         />
       </div>
+      {TURNSTILE_ENABLED && (
+        <TurnstileWidget onVerify={setTurnstileToken} />
+      )}
       {error && <p className="text-red-600 font-semibold text-sm">{error}</p>}
       <button
         type="submit"

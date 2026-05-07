@@ -1,34 +1,99 @@
 /**
- * Contact form API – forwards submissions to Google Sheets via Google Apps Script.
+ * Contact form API – validates input, verifies Cloudflare Turnstile,
+ * and forwards submissions to Google Sheets via Google Apps Script.
+ * The Apps Script is responsible for appending the row AND emailing
+ * the site owner on every submission.
  *
- * Set GOOGLE_SCRIPT_URL in .env.local to your Apps Script Web App URL (Deploy > New deployment > Web app).
+ * Required env vars:
+ *   GOOGLE_SCRIPT_URL          - Apps Script Web App /exec URL
+ *   TURNSTILE_SECRET_KEY       - Cloudflare Turnstile secret (server-side)
+ *   NEXT_PUBLIC_TURNSTILE_SITE_KEY - Cloudflare Turnstile site key (client-side)
  *
- * Example Apps Script (paste in script.google.com, bind to a spreadsheet, deploy as Web app):
+ * --------------------------------------------------------------
+ *  Apps Script template (paste in script.google.com, bind to a sheet,
+ *  Deploy > New deployment > Web app, "Execute as: Me",
+ *  "Who has access: Anyone").
+ *
+ *  Set NOTIFICATION_EMAIL to where you want notifications delivered.
+ * --------------------------------------------------------------
+ *
+ *   const SPREADSHEET_ID = 'PASTE_YOUR_SHEET_ID_HERE';
+ *   const NOTIFICATION_EMAIL = 'info@awaisdigitalservices.co.uk';
  *
  *   function doPost(e) {
  *     try {
- *       var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
- *       var data = JSON.parse(e.postData.contents);
+ *       const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getActiveSheet();
+ *       const data = JSON.parse(e.postData.contents);
+ *
+ *       // First-run: write header row if the sheet is empty.
+ *       if (sheet.getLastRow() === 0) {
+ *         sheet.appendRow([
+ *           'Timestamp', 'Name', 'Email', 'Phone', 'Project Type',
+ *           'Message', 'Source', 'Status', 'Tags', 'Notes', 'IP', 'User-Agent'
+ *         ]);
+ *       }
+ *
  *       sheet.appendRow([
  *         new Date(),
  *         data.name || '',
  *         data.email || '',
  *         data.phone || '',
  *         data.type || '',
- *         data.message || ''
+ *         data.message || '',
+ *         data.source || 'Website',
+ *         data.status || 'New',
+ *         data.tags || '',
+ *         data.notes || '',
+ *         data.ip || '',
+ *         data.userAgent || ''
  *       ]);
- *       return ContentService.createTextOutput(JSON.stringify({ ok: true }))
+ *
+ *       const subject = 'New enquiry: ' + (data.type || 'Website') +
+ *         ' – ' + (data.name || 'No name');
+ *       const body =
+ *         'You received a new submission from awaisdigitalservices.co.uk\n\n' +
+ *         'Name:    ' + (data.name || '') + '\n' +
+ *         'Email:   ' + (data.email || '') + '\n' +
+ *         'Phone:   ' + (data.phone || '') + '\n' +
+ *         'Type:    ' + (data.type || '') + '\n' +
+ *         'Source:  ' + (data.source || 'Website') + '\n\n' +
+ *         'Message:\n' + (data.message || '') + '\n\n' +
+ *         '— Submitted: ' + new Date().toString();
+ *
+ *       MailApp.sendEmail({
+ *         to: NOTIFICATION_EMAIL,
+ *         subject: subject,
+ *         body: body,
+ *         replyTo: data.email || NOTIFICATION_EMAIL,
+ *         name: 'Awais Digital Services Website'
+ *       });
+ *
+ *       return ContentService
+ *         .createTextOutput(JSON.stringify({ ok: true }))
  *         .setMimeType(ContentService.MimeType.JSON);
  *     } catch (err) {
- *       return ContentService.createTextOutput(JSON.stringify({ ok: false, error: err.toString() }))
+ *       return ContentService
+ *         .createTextOutput(JSON.stringify({ ok: false, error: err.toString() }))
  *         .setMimeType(ContentService.MimeType.JSON);
  *     }
  *   }
  *
- * Sheet columns: Timestamp | Name | Email | Phone | Project Type | Message | Source | Status | Tags | Notes
+ *   function doGet() {
+ *     return ContentService
+ *       .createTextOutput(JSON.stringify({ ok: true, status: 'alive' }))
+ *       .setMimeType(ContentService.MimeType.JSON);
+ *   }
+ *
+ * --------------------------------------------------------------
+ *  After saving the script, click "Run" once to grant the
+ *  SpreadsheetApp + MailApp permissions, then deploy.
+ * --------------------------------------------------------------
  */
 
 const GOOGLE_SCRIPT_URL = process.env.GOOGLE_SCRIPT_URL;
+const TURNSTILE_SECRET_KEY = process.env.TURNSTILE_SECRET_KEY;
+const TURNSTILE_VERIFY_URL =
+  "https://challenges.cloudflare.com/turnstile/v0/siteverify";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_REGEX = /^[\d\s+\-()]{10,20}$/;
@@ -54,6 +119,49 @@ function validate(body) {
   return null;
 }
 
+async function verifyTurnstile(token, ip) {
+  // Skip entirely outside production (dev / preview) so local testing isn't blocked.
+  if (process.env.NODE_ENV !== "production") {
+    return { ok: true, skipped: true };
+  }
+  if (!TURNSTILE_SECRET_KEY) {
+    // No secret configured -> treat as disabled (don't block submissions).
+    return { ok: true, skipped: true };
+  }
+  if (!token) {
+    return { ok: false, reason: "Please complete the security check." };
+  }
+
+  try {
+    const form = new URLSearchParams();
+    form.append("secret", TURNSTILE_SECRET_KEY);
+    form.append("response", token);
+    if (ip) form.append("remoteip", ip);
+
+    const res = await fetch(TURNSTILE_VERIFY_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: form.toString(),
+    });
+    const data = await res.json();
+    if (data && data.success) return { ok: true };
+    return { ok: false, reason: "Security check failed. Please try again." };
+  } catch (err) {
+    console.error("Turnstile verify error:", err);
+    return { ok: false, reason: "Could not verify the security check. Please try again." };
+  }
+}
+
+function getClientIp(request) {
+  const xff = request.headers.get("x-forwarded-for");
+  if (xff) return xff.split(",")[0].trim();
+  return (
+    request.headers.get("cf-connecting-ip") ||
+    request.headers.get("x-real-ip") ||
+    ""
+  );
+}
+
 export async function POST(request) {
   if (!GOOGLE_SCRIPT_URL) {
     return Response.json(
@@ -77,6 +185,13 @@ export async function POST(request) {
     return Response.json({ error: validationError }, { status: 400 });
   }
 
+  const ip = getClientIp(request);
+
+  const turnstile = await verifyTurnstile(body.turnstileToken, ip);
+  if (!turnstile.ok) {
+    return Response.json({ error: turnstile.reason }, { status: 400 });
+  }
+
   const { name, email, phone, message, type } = body;
   const payload = {
     name: String(name).trim(),
@@ -84,10 +199,12 @@ export async function POST(request) {
     phone: phone ? String(phone).trim() : "",
     type: type ? String(type).trim() : "Website",
     message: String(message || "").trim(),
-    source: "Website",
+    source: body.source ? String(body.source).trim() : "Website",
     status: "New",
-    tags: "Contact Form",
+    tags: body.tags ? String(body.tags).trim() : "Contact Form",
     notes: "",
+    ip,
+    userAgent: request.headers.get("user-agent") || "",
   };
 
   try {
@@ -95,10 +212,12 @@ export async function POST(request) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
+      redirect: "follow",
     });
 
     const text = await res.text();
     if (!res.ok) {
+      console.error("Apps Script non-2xx:", res.status, text);
       return Response.json(
         { error: "Failed to save submission. Please try again." },
         { status: 502 }
@@ -113,6 +232,7 @@ export async function POST(request) {
     }
 
     if (result && result.ok === false) {
+      console.error("Apps Script returned error:", result.error);
       return Response.json(
         { error: "Failed to save submission. Please try again." },
         { status: 502 }
