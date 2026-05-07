@@ -1,5 +1,6 @@
 export const metadata = {
   title: "Our Projects | Real UK Websites & Digital Solutions by ADS",
+  alternates: { canonical: "https://www.awaisdigitalservices.co.uk/projects" },
   description:
     "Browse a showcase of websites, branding, and digital marketing projects delivered by Awais Digital Services for startups and businesses across the UK.",
   keywords: [

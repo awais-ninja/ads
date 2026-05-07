@@ -1,10 +1,10 @@
 import PricingPage from "./pricing";
 
 export const metadata = {
-  title:
-    "Pricing | Web Design, SEO & Marketing UK | Awais Digital Services (ADS)",
+  title: "Pricing | Website, Marketing, SEO & IT Packages | Awais Digital Services",
+  alternates: { canonical: "https://www.awaisdigitalservices.co.uk/pricing" },
   description:
-    "View transparent, affordable pricing for websites, SEO, branding, and digital marketing. No hidden charges. Built for UK startups and small businesses. Free consultation available.",
+    "Flexible pricing for UK small businesses. Choose website packages, marketing plans, SEO, paid ads, branding, IT support, automation, one-off services, or build your own package.",
   keywords: [
     "web design pricing UK",
     "affordable website packages UK",

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { services, tools, platforms } from "@/data/servicesData";
+import { INDUSTRIES_WE_SERVE } from "@/data/industryLandingPages";
 import Link from "@/components/Link";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import FinalCTA from "@/components/FinalCTA";
@@ -31,7 +32,7 @@ export default function ServicesContent() {
               <span className="text-red">UK startups and businesses</span>{" "}
               thrive online.
             </p>
-            <div className="flex justify-center md:justify-start gap-4">
+            <div className="flex flex-wrap justify-center md:justify-start gap-4">
               <Link
                 href="https://wa.me/447443098117"
                 aria-label="Message Awais Digital Services on WhatsApp"
@@ -39,7 +40,21 @@ export default function ServicesContent() {
               >
                 Message on WhatsApp
               </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center px-6 py-3 text-navy border border-navy font-semibold rounded-full hover:bg-navy hover:text-white transition-colors"
+                aria-label="Contact Awais Digital Services"
+              >
+                Contact Us
+              </Link>
             </div>
+            <p className="text-sm text-gray-600 mt-2 text-center md:text-left">
+              <Link href="/" className="text-red hover:underline font-medium">Home</Link>
+              {" · "}
+              <Link href="/pricing" className="text-red hover:underline font-medium">Pricing</Link>
+              {" · "}
+              <Link href="/projects" className="text-red hover:underline font-medium">Our Projects</Link>
+            </p>
           </div>
 
           {/* Right: Image */}
@@ -139,6 +154,51 @@ export default function ServicesContent() {
                 </motion.div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* Industries We Serve */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">
+              Industries We <span className="text-red">Serve</span>
+            </h2>
+            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+              Tailored web design and digital services for specific sectors across the UK.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 mb-10">
+            {INDUSTRIES_WE_SERVE.map(({ path, label }) => (
+              <Link
+                key={path}
+                href={path}
+                className="bg-white rounded-xl shadow-md p-4 hover:shadow-lg transition border border-gray-100 text-navy font-semibold hover:text-red text-sm text-center"
+              >
+                {label}
+              </Link>
+            ))}
+          </div>
+          <div className="text-center mb-6">
+            <h3 className="text-2xl font-bold text-navy mb-4">
+              More Services &amp; Resources
+            </h3>
+            <p className="text-gray-700 max-w-2xl mx-auto mb-6">
+              Explore our SEO landing pages for small business web design, affordable packages, redesign, maintenance, and more.
+            </p>
+          </div>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Link href="/seo/website-design-small-business-uk" className="px-4 py-2 bg-white rounded-full border border-gray-200 text-navy text-sm font-medium hover:border-red hover:text-red transition">Small Business UK</Link>
+            <Link href="/seo/affordable-website-design-uk" className="px-4 py-2 bg-white rounded-full border border-gray-200 text-navy text-sm font-medium hover:border-red hover:text-red transition">Affordable Web Design</Link>
+            <Link href="/seo/website-redesign-services-uk" className="px-4 py-2 bg-white rounded-full border border-gray-200 text-navy text-sm font-medium hover:border-red hover:text-red transition">Website Redesign</Link>
+            <Link href="/seo/website-maintenance-services-uk" className="px-4 py-2 bg-white rounded-full border border-gray-200 text-navy text-sm font-medium hover:border-red hover:text-red transition">Website Maintenance</Link>
+            <Link href="/seo/web-design-agency-london" className="px-4 py-2 bg-white rounded-full border border-gray-200 text-navy text-sm font-medium hover:border-red hover:text-red transition">Web Design London</Link>
+            <Link href="/seo/web-design-agency-manchester" className="px-4 py-2 bg-white rounded-full border border-gray-200 text-navy text-sm font-medium hover:border-red hover:text-red transition">Web Design Manchester</Link>
+            <Link href="/seo/website-design-pricing-uk" className="px-4 py-2 bg-white rounded-full border border-gray-200 text-navy text-sm font-medium hover:border-red hover:text-red transition">Website Design Pricing</Link>
+            <Link href="/seo/hire-web-designer-uk" className="px-4 py-2 bg-white rounded-full border border-gray-200 text-navy text-sm font-medium hover:border-red hover:text-red transition">Hire Web Designer UK</Link>
+            <Link href="/seo/free-website-audit" className="px-4 py-2 bg-red text-white rounded-full text-sm font-semibold hover:bg-navy transition">Free Website Audit</Link>
+            <Link href="/seo" className="px-4 py-2 bg-navy text-white rounded-full text-sm font-semibold hover:bg-red transition">View all SEO pages</Link>
           </div>
         </div>
       </section>

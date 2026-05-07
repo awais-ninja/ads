@@ -11,6 +11,36 @@ import {
 } from "react-icons/fa";
 import React from "react";
 
+const BASE_URL = "https://www.awaisdigitalservices.co.uk";
+const defaultOg = {
+  url: `${BASE_URL}/og.jpg`,
+  width: 1200,
+  height: 630,
+  alt: "Awais Digital Services",
+};
+
+export const metadata = {
+  title: "Privacy Policy | Awais Digital Services",
+  alternates: { canonical: `${BASE_URL}/privacy-policy` },
+  description:
+    "Privacy policy for Awais Digital Services. How we collect, use, and protect your information when you use our services or visit our website.",
+  openGraph: {
+    title: "Privacy Policy | Awais Digital Services (ADS)",
+    description: "How we collect, use, and protect your information.",
+    url: `${BASE_URL}/privacy-policy`,
+    siteName: "Awais Digital Services",
+    locale: "en_GB",
+    type: "website",
+    images: [defaultOg],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy | Awais Digital Services",
+    description: "How we protect your data.",
+    images: [defaultOg.url],
+  },
+};
+
 export default function PrivacyPolicy() {
   return (
     <main className="max-w-4xl mx-auto py-12 px-4 animate-fade-in">
@@ -20,7 +50,7 @@ export default function PrivacyPolicy() {
           <h1 className="text-3xl font-bold text-navy">Privacy Policy</h1>
         </div>
         <p className="mb-2 text-gray-700 font-medium">Awais Digital Services</p>
-        <p className="mb-6 text-gray-700">Effective Date: [Insert Date]</p>
+        <p className="mb-6 text-gray-700">Effective Date: March 2025</p>
         <p className="mb-6 text-gray-700">
           This privacy policy outlines how Awais Digital Services ("we", "our",
           "us") collects, uses, and protects any information that you provide
@@ -140,39 +170,104 @@ export default function PrivacyPolicy() {
 
         <div className="mb-6">
           <div className="flex items-center gap-2 mb-2">
-            <FaUserShield className="text-red" />
+            <FaDatabase className="text-red" />
             <h2 className="text-xl font-semibold text-navy">
-              Controlling Your Personal Information
+              How Long We Store Your Data
             </h2>
           </div>
           <p className="mb-2 text-gray-700">
-            As a data subject, you have the right to:
+            We keep your data only as long as needed for the purposes above or as
+            required by law:
           </p>
           <ul className="list-disc ml-8 mb-2 text-gray-700">
-            <li>Request a copy of the personal data we hold</li>
-            <li>Ask for correction or deletion of your data</li>
-            <li>Withdraw consent at any time</li>
-            <li>Object to the processing of your data</li>
-            <li>Request data portability (where applicable)</li>
-            <li>
-              File a complaint with the Information Commissioner's Office (ICO)
-            </li>
+            <li><strong>Contact form and enquiries:</strong> Up to 24 months after last contact, unless we have an ongoing contract or you ask for deletion sooner.</li>
+            <li><strong>Client and project data:</strong> For the duration of the contract and up to 7 years thereafter for legal and accounting purposes where applicable.</li>
+            <li><strong>Cookie and analytics data:</strong> As per the relevant provider (e.g. Google Analytics retention settings). You can withdraw consent at any time via Cookie Settings.</li>
+          </ul>
+        </div>
+
+        <div className="mb-6">
+          <div className="flex items-center gap-2 mb-2">
+            <FaUserCheck className="text-red" />
+            <h2 className="text-xl font-semibold text-navy">
+              Who Has Access to Your Data
+            </h2>
+          </div>
+          <p className="mb-2 text-gray-700">
+            Access to your personal data is limited to:
+          </p>
+          <ul className="list-disc ml-8 mb-2 text-gray-700">
+            <li>Authorized staff of Awais Digital Services who need it to perform their role (e.g. responding to enquiries, delivering services).</li>
+            <li>Trusted third-party processors who act on our instructions (see &quot;Third-Party Services&quot; below). We have agreements in place to protect your data.</li>
           </ul>
           <p className="mb-2 text-gray-700">
-            To exercise these rights, email us at{" "}
+            We do not sell your personal data. We do not share it with third
+            parties for their own marketing unless you have given explicit
+            consent.
+          </p>
+        </div>
+
+        <div className="mb-6">
+          <div className="flex items-center gap-2 mb-2">
+            <FaUserShield className="text-red" />
+            <h2 className="text-xl font-semibold text-navy">
+              Your Rights Under UK and EU GDPR
+            </h2>
+          </div>
+          <p className="mb-2 text-gray-700">
+            As a data subject you have the following rights. We will respond
+            within one month of a valid request.
+          </p>
+          <ul className="list-disc ml-8 mb-2 text-gray-700">
+            <li><strong>Right to access:</strong> You can request a copy of the personal data we hold about you.</li>
+            <li><strong>Right to rectification:</strong> You can ask us to correct inaccurate or incomplete data.</li>
+            <li><strong>Right to erasure:</strong> You can ask us to delete your personal data where there is no overriding legal or legitimate reason to keep it.</li>
+            <li><strong>Right to restrict processing:</strong> You can ask us to limit how we use your data in certain circumstances.</li>
+            <li><strong>Right to data portability:</strong> Where processing is based on consent or contract and is carried out by automated means, you can ask for your data in a structured, machine-readable format.</li>
+            <li><strong>Right to object:</strong> You can object to processing based on legitimate interests or for direct marketing.</li>
+            <li><strong>Right to withdraw consent:</strong> Where we rely on consent, you can withdraw it at any time (e.g. via Cookie Settings for cookies).</li>
+            <li><strong>Right to complain:</strong> You have the right to lodge a complaint with the Information Commissioner&apos;s Office (ICO) in the UK or your local supervisory authority in the EEA.</li>
+          </ul>
+          <p className="mb-2 text-gray-700">
+            <strong>How to request access, deletion, or other rights:</strong>{" "}
+            Email us at{" "}
             <a
-              href="mailto:privacy@awaisdigitalservices.co.uk"
+              href="mailto:info@awaisdigitalservices.co.uk"
               className="text-red underline font-medium"
             >
-              privacy@awaisdigitalservices.co.uk
+              info@awaisdigitalservices.co.uk
             </a>{" "}
-            or write to:
+            with the subject &quot;Data request&quot; and describe what you need.
+            We may ask you to verify your identity. You can also write to: Awais
+            Digital Services, Data Request, United Kingdom.
           </p>
-          <div className="ml-8 mb-2 text-gray-700">
-            <p>Data Request Team</p>
-            <p>Awais Digital Services</p>
-            <p>[Insert Business Address]</p>
+        </div>
+
+        <div className="mb-6">
+          <div className="flex items-center gap-2 mb-2">
+            <FaGlobeEurope className="text-red" />
+            <h2 className="text-xl font-semibold text-navy">
+              Third-Party Services We Use
+            </h2>
           </div>
+          <p className="mb-2 text-gray-700">
+            We use the following types of services. Each may process data as
+            described in their own privacy policies. We only enable analytics
+            and marketing tools after you have given consent where required.
+          </p>
+          <ul className="list-disc ml-8 mb-2 text-gray-700">
+            <li><strong>Google Analytics / Google Tag Manager:</strong> Website usage statistics (only if you accept analytics cookies). Data may be processed in the US under appropriate safeguards.</li>
+            <li><strong>Google Ads:</strong> Advertising and conversion measurement (only if you accept marketing cookies).</li>
+            <li><strong>Hosting and infrastructure:</strong> The site is hosted on Vercel and related infrastructure. They process requests and logs necessary to run the service.</li>
+            <li><strong>Contact form and lead storage:</strong> Form submissions are sent to a Google Apps Script and may be stored in a Google Sheet so we can respond to your enquiry. Google processes data according to its privacy policy.</li>
+            <li><strong>Live chat (Crisp):</strong> If you accept preference cookies, we use Crisp for live chat. Crisp may collect and process data as set out in their privacy policy.</li>
+            <li><strong>Facebook Pixel (Meta):</strong> If you accept marketing cookies, we may use Meta’s pixel for ad measurement. Meta’s privacy policy applies.</li>
+            <li><strong>Vercel Analytics and Speed Insights:</strong> We may use Vercel’s own analytics for performance monitoring; this is minimal and can be considered part of site operation.</li>
+          </ul>
+          <p className="mb-2 text-gray-700">
+            We do not control these third parties. We choose them with care and
+            ensure contracts or terms are in place where required by law.
+          </p>
         </div>
 
         <div className="mb-6">
@@ -250,7 +345,7 @@ export default function PrivacyPolicy() {
             <li>Google Analytics</li>
             <li>Meta (Facebook) Pixel</li>
             <li>LinkedIn Ads</li>
-            <li>YouTube, Vimeo, and other embedded services</li>
+            <li>Vimeo and other embedded video services</li>
             <li>HubSpot (if CRM tools are used for campaigns)</li>
           </ul>
         </div>

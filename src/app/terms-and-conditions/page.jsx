@@ -18,6 +18,36 @@ import {
 } from "react-icons/fa";
 import React from "react";
 
+const BASE_URL = "https://www.awaisdigitalservices.co.uk";
+const defaultOg = {
+  url: `${BASE_URL}/og.jpg`,
+  width: 1200,
+  height: 630,
+  alt: "Awais Digital Services",
+};
+
+export const metadata = {
+  title: "Terms and Conditions | Awais Digital Services",
+  alternates: { canonical: `${BASE_URL}/terms-and-conditions` },
+  description:
+    "Terms and conditions for Awais Digital Services. Legal rights and obligations for web design and digital marketing services.",
+  openGraph: {
+    title: "Terms and Conditions | Awais Digital Services (ADS)",
+    description: "Terms of service for our web design and digital marketing services.",
+    url: `${BASE_URL}/terms-and-conditions`,
+    siteName: "Awais Digital Services",
+    locale: "en_GB",
+    type: "website",
+    images: [defaultOg],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms and Conditions | Awais Digital Services",
+    description: "Terms of service for our digital services.",
+    images: [defaultOg.url],
+  },
+};
+
 export default function TermsAndConditions() {
   return (
     <main className="max-w-4xl mx-auto py-12 px-4 animate-fade-in">

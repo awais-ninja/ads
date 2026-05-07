@@ -23,6 +23,7 @@ const DynamicFAQ = dynamic(() => import("@/components/FAQ"), {
 
 export const metadata = {
   title: "Affordable Website Design & Marketing Services UK | ADS",
+  alternates: { canonical: "https://www.awaisdigitalservices.co.uk/" },
   description:
     "ADS builds affordable, SEO-optimized websites, branding, and digital marketing for UK startups and small businesses. Boost your online presence today.",
   keywords: [
@@ -68,7 +69,7 @@ export const viewport = {
 
 export default function Home() {
   return (
-    <main className="pt-20 md:pt-14">
+    <div className="min-h-0">
       <FAQSchema />
       <Hero />
       <Pricing />
@@ -80,6 +81,6 @@ export default function Home() {
       {/*<DynamicTestimonials />*/}
       <FinalCTA />
       <DynamicFAQ />
-    </main>
+    </div>
   );
 }

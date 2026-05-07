@@ -3,6 +3,7 @@ import ServicesContent from "./ServicesContent";
 export const metadata = {
   title:
     "Services | Web Design, Branding & Marketing in the UK | Awais Digital Services",
+  alternates: { canonical: "https://www.awaisdigitalservices.co.uk/services" },
   description:
     "Explore all our digital services including website design, branding, SEO, email marketing, mobile apps, and local SEO tailored for UK businesses and startups.",
   keywords:

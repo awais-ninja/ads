@@ -10,6 +10,37 @@ import {
   FaCog,
 } from "react-icons/fa";
 import React from "react";
+import Link from "@/components/Link";
+
+const BASE_URL = "https://www.awaisdigitalservices.co.uk";
+const defaultOg = {
+  url: `${BASE_URL}/og.jpg`,
+  width: 1200,
+  height: 630,
+  alt: "Awais Digital Services",
+};
+
+export const metadata = {
+  title: "Cookie Policy | Awais Digital Services",
+  alternates: { canonical: `${BASE_URL}/cookie-policy` },
+  description:
+    "Cookie policy for Awais Digital Services. How we use cookies and similar technologies on www.awaisdigitalservices.co.uk.",
+  openGraph: {
+    title: "Cookie Policy | Awais Digital Services (ADS)",
+    description: "How Awais Digital Services uses cookies on our website.",
+    url: `${BASE_URL}/cookie-policy`,
+    siteName: "Awais Digital Services",
+    locale: "en_GB",
+    type: "website",
+    images: [defaultOg],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cookie Policy | Awais Digital Services",
+    description: "How we use cookies on our website.",
+    images: [defaultOg.url],
+  },
+};
 
 export default function CookiePolicy() {
   return (
@@ -20,12 +51,13 @@ export default function CookiePolicy() {
           <h1 className="text-3xl font-bold text-navy">Cookie Policy</h1>
         </div>
         <p className="mb-2 text-gray-700 font-medium">Awais Digital Services</p>
-        <p className="mb-6 text-gray-700">Effective Date: [Insert Date]</p>
+        <p className="mb-6 text-gray-700">Effective Date: March 2025</p>
         <p className="mb-6 text-gray-700">
           This Cookie Policy explains how Awais Digital Services ("we", "our",
-          or "us") uses cookies and similar tracking technologies on our website
-          www.awaisdigitalservices.co.uk. By using our website, you consent to
-          our use of cookies in accordance with this policy.
+          or "us") uses cookies and similar technologies on our website
+          www.awaisdigitalservices.co.uk. We comply with UK GDPR, EU GDPR, and
+          the ePrivacy Directive. Non-essential cookies are only used after you
+          have given your consent.
         </p>
 
         <div className="mb-6">
@@ -75,66 +107,67 @@ export default function CookiePolicy() {
 
           <div className="mb-4">
             <h3 className="text-lg font-semibold text-navy mb-2">
-              1. Strictly Necessary Cookies
+              1. Necessary Cookies
             </h3>
             <p className="mb-2 text-gray-700">
-              These cookies are essential for the website to function properly.
-              They enable core features such as page navigation and access to
-              secure areas. You cannot opt out of these cookies via the website.
+              These cookies are essential for the website to function. They
+              enable basic features like page navigation and access to secure
+              areas. They do not collect personal data for marketing or
+              analytics. You cannot disable these via our cookie tool.
             </p>
             <p className="mb-2 text-gray-700 font-medium">Examples:</p>
             <ul className="list-disc ml-8 mb-2 text-gray-700">
-              <li>Session cookies for form submission</li>
-              <li>Security authentication cookies</li>
+              <li>Cookie consent preference storage (localStorage)</li>
+              <li>Security and load-balancing identifiers where required</li>
             </ul>
           </div>
 
           <div className="mb-4">
             <h3 className="text-lg font-semibold text-navy mb-2">
-              2. Performance and Analytics Cookies
+              2. Analytics Cookies
             </h3>
             <p className="mb-2 text-gray-700">
-              These cookies collect anonymous data about how visitors use our
-              site, such as which pages are visited most. This helps us optimize
-              website structure and user journeys.
+              These cookies help us understand how visitors use our site (e.g.
+              pages visited, time on site). We use this information only to
+              improve the website. Data is aggregated and we use Google
+              Analytics in a way that respects your privacy when you consent.
             </p>
             <p className="mb-2 text-gray-700 font-medium">Examples:</p>
             <ul className="list-disc ml-8 mb-2 text-gray-700">
-              <li>Google Analytics</li>
-              <li>HubSpot Analytics</li>
-              <li>LinkedIn Insights</li>
+              <li>Google Analytics (_ga, _gid, _gat)</li>
             </ul>
           </div>
 
           <div className="mb-4">
             <h3 className="text-lg font-semibold text-navy mb-2">
-              3. Functionality Cookies
+              3. Marketing Cookies
             </h3>
             <p className="mb-2 text-gray-700">
-              These cookies allow the site to remember your choices and provide
-              enhanced features, such as remembering your location or language
-              preference.
+              These cookies are used to deliver relevant ads and measure the
+              effectiveness of campaigns. They may be set by us or our
+              advertising partners (e.g. Google Ads, Meta/Facebook Pixel). They
+              are only placed if you accept marketing cookies.
             </p>
             <p className="mb-2 text-gray-700 font-medium">Examples:</p>
             <ul className="list-disc ml-8 mb-2 text-gray-700">
-              <li>Live chat preferences</li>
-              <li>Cookie consent banner memory</li>
-            </ul>
-          </div>
-
-          <div className="mb-4">
-            <h3 className="text-lg font-semibold text-navy mb-2">
-              4. Targeting & Advertising Cookies
-            </h3>
-            <p className="mb-2 text-gray-700">
-              These cookies help us show relevant ads to users and track the
-              performance of our marketing campaigns.
-            </p>
-            <p className="mb-2 text-gray-700 font-medium">Examples:</p>
-            <ul className="list-disc ml-8 mb-2 text-gray-700">
-              <li>Google Ads (AdWords) tracking</li>
+              <li>Google Ads conversion and remarketing</li>
               <li>Meta (Facebook) Pixel</li>
-              <li>LinkedIn advertising and retargeting pixel</li>
+            </ul>
+          </div>
+
+          <div className="mb-4">
+            <h3 className="text-lg font-semibold text-navy mb-2">
+              4. Preference Cookies
+            </h3>
+            <p className="mb-2 text-gray-700">
+              These cookies remember your choices (e.g. cookie preferences) and
+              enable features like live chat so we can assist you. They are only
+              placed if you accept preference cookies.
+            </p>
+            <p className="mb-2 text-gray-700 font-medium">Examples:</p>
+            <ul className="list-disc ml-8 mb-2 text-gray-700">
+              <li>Cookie consent choices (stored in browser)</li>
+              <li>Crisp live chat (when you accept preference cookies)</li>
             </ul>
           </div>
         </div>
@@ -151,7 +184,7 @@ export default function CookiePolicy() {
             which may set their own cookies on your device. These may include:
           </p>
           <ul className="list-disc ml-8 mb-2 text-gray-700">
-            <li>YouTube, Vimeo (for video playback)</li>
+            <li>Vimeo and other embedded video (for video playback)</li>
             <li>SlideShare (for presentations)</li>
             <li>Social sharing buttons (Facebook, LinkedIn, X/Twitter)</li>
             <li>
@@ -226,12 +259,27 @@ export default function CookiePolicy() {
         <div className="mb-6">
           <div className="flex items-center gap-2 mb-2">
             <FaEye className="text-red" />
-            <h2 className="text-xl font-semibold text-navy">Consent</h2>
+            <h2 className="text-xl font-semibold text-navy">Consent & Withdrawing Consent</h2>
           </div>
           <p className="mb-2 text-gray-700">
-            By continuing to use our website, you consent to the placement of
-            cookies on your device unless you opt out through browser settings
-            or cookie control tools.
+            Non-essential cookies (analytics, marketing, preference) are only
+            placed after you have given your consent via our cookie banner. You
+            can change your mind at any time.
+          </p>
+          <p className="mb-2 text-gray-700">
+            <strong>To withdraw or change your consent:</strong> Use the
+            &quot;Cookie Settings&quot; link in the website footer, or{" "}
+            <Link href="/#cookie-settings" className="text-red underline">
+              open Cookie Settings
+            </Link>
+            , to reopen the cookie preference centre. You can then turn off
+            analytics, marketing, or preference cookies. Necessary cookies will
+            remain to support site operation.
+          </p>
+          <p className="mb-2 text-gray-700">
+            You can also clear or block cookies via your browser settings (see
+            &quot;Managing and Disabling Cookies&quot; above). Blocking all
+            cookies may affect site functionality.
           </p>
         </div>
 

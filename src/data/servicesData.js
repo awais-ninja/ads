@@ -32,7 +32,6 @@ import {
   FaLink,
   FaInstagram,
   FaLinkedin,
-  FaYoutube,
 } from "react-icons/fa";
 import {
   SiWordpress,
@@ -269,12 +268,12 @@ export const services = [
     title: "Social Media Advertising",
     subtitle: "Paid Campaigns Across Major Platforms",
     description:
-      "Paid advertising campaigns across Facebook, Instagram, TikTok, LinkedIn, and YouTube to increase reach, engagement, and conversions.",
+      "Paid advertising campaigns across Facebook, Instagram, TikTok, and LinkedIn to increase reach, engagement, and conversions.",
     features: [
       "Facebook & Instagram Ads",
       "TikTok Advertising Campaigns",
       "LinkedIn B2B Advertising",
-      "YouTube Video Ads",
+      "Video Ads",
       "Audience Targeting & Retargeting",
       "Conversion Tracking & Analytics",
     ],
@@ -345,12 +344,12 @@ export const services = [
     title: "Video Editing Services",
     subtitle: "Professional Video Production & Editing",
     description:
-      "Professional video editing services for social media, marketing campaigns, product videos, and brand content. Expert video editors create engaging, high-quality videos that capture attention, tell your story, and drive conversions across YouTube, TikTok, Instagram, and other platforms.",
+      "Professional video editing services for social media, marketing campaigns, product videos, and brand content. Expert video editors create engaging, high-quality videos that capture attention, tell your story, and drive conversions across TikTok, Instagram, and other platforms.",
     features: [
       "Social Media Video Editing",
       "Marketing & Promotional Videos",
       "Product & Service Videos",
-      "YouTube Video Production",
+      "Video Production",
       "TikTok & Short-Form Content",
       "Video Color Grading & Effects",
     ],
@@ -764,12 +763,6 @@ export const platforms = [
   },
   {
     id: 5,
-    name: "YouTube Advertising",
-    description: "Video marketing for brand awareness and conversions",
-    icon: FaYoutube,
-  },
-  {
-    id: 6,
     name: "Email Marketing Platforms",
     description: "Customer communication, promotions, and automation",
     icon: FaEnvelope,

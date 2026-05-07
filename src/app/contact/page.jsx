@@ -2,10 +2,12 @@ import Link from "@/components/Link";
 import { FaWhatsapp, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 import ContactForm from "../../components/ContactForm";
 import FinalCTA from "../../components/FinalCTA";
+import BusinessInformation from "../../components/BusinessInformation";
 import Image from "next/image";
 
 export const metadata = {
   title: "Contact ADS | Web Design, SEO, Branding & Marketing in the UK",
+  alternates: { canonical: "https://www.awaisdigitalservices.co.uk/contact" },
   description:
     "Need a stunning website, expert branding, or targeted digital marketing? Contact Awais Digital Services (ADS) in the UK for a free consultation via WhatsApp, email, or call. Trusted by startups, local businesses, and professionals across the UK.",
   keywords:
@@ -152,14 +154,20 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/*<section className="py-16 bg-gray-50">
+      <BusinessInformation variant="page" />
+
+      <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 max-w-2xl">
           <h2 className="text-2xl md:text-3xl font-bold text-navy mb-6 text-center">
             Send Us a Message
           </h2>
+          <p className="text-gray-600 text-center mb-6">
+            Awais Digital Services — website design, branding, and digital
+            marketing for UK businesses. We&apos;ll respond as soon as we can.
+          </p>
           <ContactForm />
         </div>
-      </section> */}
+      </section>
       <FinalCTA />
     </main>
   );

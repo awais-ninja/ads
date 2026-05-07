@@ -1,14 +1,14 @@
 import "./globals.css";
 import { Poppins, Inter } from "next/font/google";
+import Script from "next/script";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import MoveToTop from "@/components/MoveToTop";
-import CookieConsent from "@/components/CookieConsent";
-import Script from "next/script";
+import CookieBanner from "@/components/CookieBanner";
+import TrackingScripts from "@/components/TrackingScripts";
+import BreadcrumbSchema from "@/components/BreadcrumbSchema";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-
-import ClientSideEffects from "@/components/ClientSideEffects";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800"],
@@ -45,9 +45,6 @@ export const metadata = {
   creator: "Awais Digital Services",
   publisher: "Awais Digital Services",
   metadataBase: new URL("https://www.awaisdigitalservices.co.uk"),
-  alternates: {
-    canonical: "https://www.awaisdigitalservices.co.uk",
-  },
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
@@ -88,7 +85,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${poppins.variable} ${inter.variable}`}>
+    <html
+      lang="en"
+      className={`${poppins.variable} ${inter.variable}`}
+      data-scroll-behavior="smooth"
+    >
       <head>
         <meta
           name="google-site-verification"
@@ -100,95 +101,6 @@ export default function RootLayout({ children }) {
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
-        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-        <link rel="dns-prefetch" href="https://client.crisp.chat" />
-
-        {/* Google Tag Manager (gtag.js) - Load but don't track until consent */}
-        {process.env.NEXT_PUBLIC_GA_ID && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="gtag-init" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                
-                // Set consent to denied by default (GDPR compliant)
-                gtag('consent', 'default', {
-                  'analytics_storage': 'denied',
-                  'ad_storage': 'denied',
-                  'wait_for_update': 500
-                });
-                
-                // Initialize GA config (required for GA to show as active)
-                // Data collection is still blocked until consent is granted
-                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
-                  'anonymize_ip': true
-                });
-                
-                // Check for existing consent on page load with delay
-                setTimeout(() => {
-                  const gtagConsent = localStorage.getItem('cookie-consent');
-                  if (gtagConsent) {
-                    try {
-                      const consent = JSON.parse(gtagConsent);
-                      if (consent.analytics) {
-                        // Enable analytics tracking when consent is granted
-                        gtag('consent', 'update', {
-                          'analytics_storage': 'granted'
-                        });
-                      }
-                      if (consent.marketing) {
-                        gtag('consent', 'update', {
-                          'ad_storage': 'granted'
-                        });
-                      }
-                    } catch (error) {
-                      console.error('Error parsing saved consent for GTM:', error);
-                    }
-                  }
-                }, 1000);
-              `}
-            </Script>
-          </>
-        )}
-
-        {/* Crisp Chat Integration - Load but don't track until consent */}
-        <Script id="crisp-widget" strategy="afterInteractive">
-          {`
-            window.$crisp=[];
-            window.CRISP_WEBSITE_ID="${process.env.NEXT_PUBLIC_CRISP_WEBSITE_ID}";
-            window.$crisp.push(['safe', false]);
-            
-            // Check for existing consent on page load with delay
-            setTimeout(() => {
-              const crispConsent = localStorage.getItem('cookie-consent');
-              if (crispConsent) {
-                try {
-                  const consent = JSON.parse(crispConsent);
-                  if (consent.functional) {
-                    window.$crisp.push(['safe', true]);
-                  }
-                } catch (error) {
-                  console.error('Error parsing saved consent for Crisp:', error);
-                }
-              }
-            }, 1000);
-            
-            (function(){
-              const d=document;
-              const s=d.createElement("script");
-              s.src="https://client.crisp.chat/l.js";
-              s.async=1;
-              d.getElementsByTagName("head")[0].appendChild(s);
-            })();
-          `}
-        </Script>
-
         {/* Organization Schema Markup */}
         <Script
           id="organization-schema"
@@ -203,7 +115,7 @@ export default function RootLayout({ children }) {
               logo: "https://www.awaisdigitalservices.co.uk/logo-web.svg",
               image: "https://www.awaisdigitalservices.co.uk/og.jpg",
               description:
-                "Affordable website design, branding, and digital marketing services for UK startups and small businesses",
+                "Digital Marketing & Web Development Agency. Affordable website design, branding, and digital marketing services for UK startups and small businesses.",
               telephone: "+44-7780-059219",
               email: "info@awaisdigitalservices.co.uk",
               address: {
@@ -211,11 +123,22 @@ export default function RootLayout({ children }) {
                 addressCountry: "GB",
                 addressRegion: "United Kingdom",
               },
+              areaServed: {
+                "@type": "Country",
+                name: "United Kingdom",
+              },
+              contactPoint: {
+                "@type": "ContactPoint",
+                email: "info@awaisdigitalservices.co.uk",
+                telephone: "+44-7780-059219",
+                contactType: "customer service",
+                areaServed: "GB",
+                availableLanguage: "English",
+              },
               sameAs: [
                 "https://www.facebook.com/MirzaAwais420",
                 "https://www.instagram.com/mirza.awais.official",
                 "https://www.linkedin.com/company/awais-digital-services",
-                "https://www.youtube.com/@awaisdigitalservices",
                 "https://twitter.com/awaisdigitalservices",
               ],
             }),
@@ -287,7 +210,6 @@ export default function RootLayout({ children }) {
                 "https://www.facebook.com/MirzaAwais420",
                 "https://www.instagram.com/mirza.awais.official",
                 "https://www.linkedin.com/company/awais-digital-services",
-                "https://www.youtube.com/@awaisdigitalservices",
                 "https://twitter.com/awaisdigitalservices",
               ],
             }),
@@ -327,150 +249,19 @@ export default function RootLayout({ children }) {
           }}
         />
 
-        {/* Facebook Pixel - Load but don't track until consent */}
-        {process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID && (
-          <Script id="facebook-pixel" strategy="afterInteractive">
-            {`
-              !function(f,b,e,v,n,t,s)
-              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-              n.queue=[];t=b.createElement(e);t.async=!0;
-              t.src=v;s=b.getElementsByTagName(e)[0];
-              s.parentNode.insertBefore(t,s)}(window, document,'script',
-              'https://connect.facebook.net/en_US/fbevents.js');
-              
-              // Initialize with denied consent by default (GDPR compliant)
-              fbq('consent', 'revoke');
-              
-              // Check for existing consent on page load with delay
-              setTimeout(() => {
-                const pixelConsent = localStorage.getItem('cookie-consent');
-                if (pixelConsent) {
-                  try {
-                    const consent = JSON.parse(pixelConsent);
-                    if (consent.marketing) {
-                      fbq('consent', 'grant');
-                      fbq('init', '${process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID}');
-                      fbq('track', 'PageView');
-                    }
-                  } catch (error) {
-                    console.error('Error parsing saved consent for Facebook Pixel:', error);
-                  }
-                }
-              }, 1000);
-            `}
-          </Script>
-        )}
-
-        {/* Performance Monitoring */}
-        <Script id="performance-monitoring" strategy="afterInteractive">
-          {`
-            // Monitor Core Web Vitals
-            if ('PerformanceObserver' in window) {
-              // LCP (Largest Contentful Paint)
-              const lcpObserver = new PerformanceObserver((list) => {
-                const entries = list.getEntries();
-                const lastEntry = entries[entries.length - 1];
-                if (lastEntry) {
-                  console.log('LCP:', lastEntry.startTime);
-                  // Send to analytics if consent granted
-                  if (window.gtag && localStorage.getItem('cookie-consent')) {
-                    try {
-                      const consent = JSON.parse(localStorage.getItem('cookie-consent'));
-                      if (consent.analytics) {
-                        gtag('event', 'LCP', { value: Math.round(lastEntry.startTime) });
-                      }
-                    } catch (error) {
-                      console.error('Error sending LCP to analytics:', error);
-                    }
-                  }
-                }
-              });
-              lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
-
-              // FID (First Input Delay)
-              const fidObserver = new PerformanceObserver((list) => {
-                const entries = list.getEntries();
-                entries.forEach((entry) => {
-                  console.log('FID:', entry.processingStart - entry.startTime);
-                  // Send to analytics if consent granted
-                  if (window.gtag && localStorage.getItem('cookie-consent')) {
-                    try {
-                      const consent = JSON.parse(localStorage.getItem('cookie-consent'));
-                      if (consent.analytics) {
-                        gtag('event', 'FID', { value: Math.round(entry.processingStart - entry.startTime) });
-                      }
-                    } catch (error) {
-                      console.error('Error sending FID to analytics:', error);
-                    }
-                  }
-                });
-              });
-              fidObserver.observe({ entryTypes: ['first-input'] });
-
-              // CLS (Cumulative Layout Shift)
-              const clsObserver = new PerformanceObserver((list) => {
-                let clsValue = 0;
-                const entries = list.getEntries();
-                entries.forEach((entry) => {
-                  if (!entry.hadRecentInput) {
-                    clsValue += entry.value;
-                  }
-                });
-                console.log('CLS:', clsValue);
-                // Send to analytics if consent granted
-                if (window.gtag && localStorage.getItem('cookie-consent')) {
-                  try {
-                    const consent = JSON.parse(localStorage.getItem('cookie-consent'));
-                    if (consent.analytics) {
-                      gtag('event', 'CLS', { value: Math.round(clsValue * 1000) / 1000 });
-                    }
-                  } catch (error) {
-                    console.error('Error sending CLS to analytics:', error);
-                  }
-                }
-              });
-              clsObserver.observe({ entryTypes: ['layout-shift'] });
-            }
-
-            // Monitor page load performance
-            window.addEventListener('load', () => {
-              setTimeout(() => {
-                const navigation = performance.getEntriesByType('navigation')[0];
-                if (navigation) {
-                  const loadTime = navigation.loadEventEnd - navigation.loadEventStart;
-                  const domContentLoaded = navigation.domContentLoadedEventEnd - navigation.domContentLoadedEventStart;
-                  
-                  console.log('Page Load Time:', loadTime);
-                  console.log('DOM Content Loaded:', domContentLoaded);
-                  
-                  // Send to analytics if consent granted
-                  if (window.gtag && localStorage.getItem('cookie-consent')) {
-                    try {
-                      const consent = JSON.parse(localStorage.getItem('cookie-consent'));
-                      if (consent.analytics) {
-                        gtag('event', 'page_load_time', { value: Math.round(loadTime) });
-                        gtag('event', 'dom_content_loaded', { value: Math.round(domContentLoaded) });
-                      }
-                    } catch (error) {
-                      console.error('Error sending performance metrics to analytics:', error);
-                    }
-                  }
-                }
-              }, 0);
-            });
-          `}
-        </Script>
       </head>
 
-      <body className={`${inter.className} bg-white text-black`}>
-        <ClientSideEffects />
+      <body
+        className={`${inter.className} bg-white text-black`}
+        suppressHydrationWarning
+      >
+        <BreadcrumbSchema />
+        <TrackingScripts />
         <Navbar />
-        <main>{children}</main>
+        <main className="pt-20">{children}</main>
         <MoveToTop />
         <Footer />
-        <CookieConsent />
+        <CookieBanner />
         <Analytics />
         <SpeedInsights />
       </body>

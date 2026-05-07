@@ -131,7 +131,7 @@ export default function ProjectsPage() {
       <section className="relative min-h-[80vh] flex items-center overflow-hidden">
         {/* Animated Background */}
         <motion.div
-          animate={{ y: backgroundY, opacity }}
+          style={{ y: backgroundY, opacity }}
           className="absolute inset-0 bg-gradient-to-br from-navy/5 to-red/5"
         />
 
@@ -227,7 +227,7 @@ export default function ProjectsPage() {
                 Our <span className="text-red">Projects</span>
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Discover some of the digital solutions we've crafted for
+                Discover some of the digital solutions we&apos;ve crafted for
                 businesses across the UK. From stunning websites to powerful
                 branding and marketing platforms.
               </p>
@@ -258,6 +258,7 @@ export default function ProjectsPage() {
                     src={featuredProjects[0].thumbnail}
                     alt={featuredProjects[0].title}
                     fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
@@ -279,6 +280,7 @@ export default function ProjectsPage() {
                     src={featuredProjects[1].thumbnail}
                     alt={featuredProjects[1].title}
                     fill
+                    sizes="(max-width: 768px) 50vw, 33vw"
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
@@ -300,6 +302,7 @@ export default function ProjectsPage() {
                     src={featuredProjects[2].thumbnail}
                     alt={featuredProjects[2].title}
                     fill
+                    sizes="(max-width: 768px) 33vw, 25vw"
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
@@ -332,6 +335,7 @@ export default function ProjectsPage() {
                     src={project.thumbnail}
                     alt={project.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover"
                   />
                 </div>
@@ -352,6 +356,31 @@ export default function ProjectsPage() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Contact CTA */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-2xl mx-auto"
+          >
+            <h2 className="text-2xl md:text-3xl font-bold text-navy mb-4">
+              Want a project like these?
+            </h2>
+            <p className="text-gray-600 mb-6">
+              Tell us your goals and we&apos;ll get back with a plan and quote.
+            </p>
+            <Link
+              href="/contact"
+              className="inline-block px-8 py-4 bg-red text-white rounded-xl font-semibold hover:bg-red/90 transition-colors"
+            >
+              Contact us / Get a quote
+            </Link>
+          </motion.div>
         </div>
       </section>
     </main>

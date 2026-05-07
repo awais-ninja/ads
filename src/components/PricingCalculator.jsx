@@ -18,13 +18,17 @@ const PricingCalculator = () => {
   const [total, setTotal] = useState(0);
 
   const packages = [
-    { id: "starter", name: "Starter Website (3 Pages)", price: 199 },
-    { id: "business", name: "Business Website (5 Pages)", price: 499 },
-    { id: "professional", name: "Professional Website (10 Pages)", price: 999 },
+    { id: "starter", name: "Website Starter Package (up to 3 pages)", price: 279 },
+    { id: "business", name: "Business Website Package (5–7 pages)", price: 559 },
+    {
+      id: "growth",
+      name: "Growth Website Package (8–12 pages + landing page)",
+      price: 959,
+    },
     {
       id: "landing",
-      name: "High-Converting Landing Page (1 page)",
-      price: 180,
+      name: "High-converting landing page (1 page)",
+      price: 199,
     },
   ];
 

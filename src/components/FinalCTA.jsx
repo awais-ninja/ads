@@ -41,7 +41,7 @@ export default function FinalCTA() {
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Link
-              href="https://wa.me/1234567890"
+              href="https://wa.me/447443098117"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-red text-white font-semibold px-8 py-3 rounded-lg hover:bg-red/80 transition-colors duration-300"

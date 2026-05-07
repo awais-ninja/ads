@@ -8,10 +8,8 @@ import {
   FaFacebook,
   FaInstagram,
   FaLinkedin,
-  FaYoutube,
   FaTwitter,
 } from "react-icons/fa";
-
 const services = [
   {
     name: "Website Design",
@@ -48,22 +46,28 @@ export default function Footer() {
                 alt="Awais Digital Services"
                 width={280}
                 height={70}
-                className="h-12 md:h-16"
-                style={{ width: "auto" }}
+                className="h-12 md:h-16 w-auto object-contain"
                 priority
               />
             </Link>
             <p className="text-base text-gray-300 mb-2">
-              Awais Digital Services (ADS) provides affordable website design,
-              branding, and email marketing services for startups and small
-              businesses across the UK.
+              <span className="font-semibold text-white">Awais Digital Services</span> — Digital Marketing &amp; Web Development Agency. Website design, branding, and email marketing for startups and small businesses. <span className="text-blue-200">Service area: United Kingdom.</span>
+            </p>
+            <p className="text-sm text-gray-400 mb-2">
+              <Link
+                href="https://www.awaisdigitalservices.co.uk"
+                className="text-blue-300 hover:text-blue-200 transition-colors"
+                aria-label="Visit Awais Digital Services website"
+              >
+                awaisdigitalservices.co.uk
+              </Link>
             </p>
             <div className="flex space-x-4 my-5">
               <Link
                 href="https://www.facebook.com/MirzaAwais420"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white hover:hover:text-blue-300 transition-colors"
+                className="text-white hover:text-blue-300 transition-colors"
                 aria-label="Follow Awais Digital Services on Facebook"
               >
                 <FaFacebook className="w-6 h-6" />
@@ -72,7 +76,7 @@ export default function Footer() {
                 href="https://www.instagram.com/mirza.awais.official/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white hover:hover:text-blue-300 transition-colors"
+                className="text-white hover:text-blue-300 transition-colors"
                 aria-label="Follow Awais Digital Services on Instagram"
               >
                 <FaInstagram className="w-6 h-6" />
@@ -81,25 +85,16 @@ export default function Footer() {
                 href="https://www.linkedin.com/company/awais-digital-services"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white hover:hover:text-blue-300 transition-colors"
+                className="text-white hover:text-blue-300 transition-colors"
                 aria-label="Connect with Awais Digital Services on LinkedIn"
               >
                 <FaLinkedin className="w-6 h-6" />
               </Link>
               <Link
-                href="https://www.youtube.com/@awaisdigitalservices"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:hover:text-blue-300 transition-colors"
-                aria-label="Subscribe to Awais Digital Services on YouTube"
-              >
-                <FaYoutube className="w-6 h-6" />
-              </Link>
-              <Link
                 href="https://twitter.com/awaisdigitalservices"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white hover:hover:text-blue-300 transition-colors"
+                className="text-white hover:text-blue-300 transition-colors"
                 aria-label="Follow Awais Digital Services on X (Twitter)"
               >
                 <FaTwitter className="w-6 h-6" />
@@ -212,6 +207,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
+
         </div>
 
         {/* Divider */}
@@ -225,15 +221,7 @@ export default function Footer() {
               className="hover:underline"
               aria-label="Read our Privacy Policy"
             >
-              Read Privacy Policy
-            </Link>
-            <span>|</span>
-            <Link
-              href="/terms-and-conditions"
-              className="hover:underline"
-              aria-label="Read our Terms and Conditions"
-            >
-              Read Terms &amp; Conditions
+              Privacy Policy
             </Link>
             <span>|</span>
             <Link
@@ -241,7 +229,23 @@ export default function Footer() {
               className="hover:underline"
               aria-label="Read our Cookie Policy"
             >
-              Read Cookie Policy
+              Cookie Policy
+            </Link>
+            <span>|</span>
+            <Link
+              href="/terms-and-conditions"
+              className="hover:underline"
+              aria-label="Read our Terms and Conditions"
+            >
+              Terms &amp; Conditions
+            </Link>
+            <span>|</span>
+            <Link
+              href="/#cookie-settings"
+              className="hover:underline"
+              aria-label="Open cookie settings"
+            >
+              Cookie Settings
             </Link>
           </div>
           <div className="text-xs text-white">

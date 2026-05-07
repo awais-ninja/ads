@@ -26,7 +26,6 @@ A modern, SEO-optimized website built with Next.js for Awais Digital Services, p
 
    - Added Facebook Pixel for marketing tracking
    - Linked X (Twitter) profile
-   - Added YouTube channel link
    - Improved social presence score
 
 5. **Performance Optimizations**
@@ -86,10 +85,16 @@ npm run dev
 Create a `.env.local` file with:
 
 ```env
+# Contact form → Google Sheets (server-side; add your Apps Script Web App URL)
+GOOGLE_SCRIPT_URL=https://script.google.com/macros/s/.../exec
+
+# Analytics & chat (production only; not loaded in dev)
 NEXT_PUBLIC_CRISP_WEBSITE_ID=your_crisp_id
 NEXT_PUBLIC_GA_ID=your_ga_id
 NEXT_PUBLIC_FACEBOOK_PIXEL_ID=your_pixel_id
 ```
+
+**Contact form (Google Sheets):** For full step-by-step instructions (sheet columns, Apps Script code, deployment, and where to get the URL), see **[docs/GOOGLE_SHEETS_SETUP.md](docs/GOOGLE_SHEETS_SETUP.md)**. In short: create a sheet with headers **Timestamp | Name | Email | Phone | Project Type | Message**, add the script from the doc, deploy as Web app (Anyone), then set `GOOGLE_SCRIPT_URL` in `.env.local` to the Web App URL.
 
 ## 📱 Features
 

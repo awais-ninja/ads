@@ -1,117 +1,117 @@
 "use client";
 
-import Pricing from "@/components/Pricing";
-import PricingCalculator from "@/components/PricingCalculator";
+import { useState } from "react";
+import BundleCard from "@/components/pricing/BundleCard";
+import BuildYourOwnSection from "@/components/pricing/BuildYourOwnSection";
+import CategoryExplorer from "@/components/pricing/CategoryExplorer";
+import FinalCTA from "@/components/pricing/FinalCTA";
+import OneOffServices from "@/components/pricing/OneOffServices";
+import PricingExplanation from "@/components/pricing/PricingExplanation";
+import PricingFAQ from "@/components/pricing/PricingFAQ";
+import PricingHero from "@/components/pricing/PricingHero";
+import PricingNotes from "@/components/pricing/PricingNotes";
+import PathSelector from "@/components/pricing/PathSelector";
+import StartingPricesCarousel from "@/components/pricing/StartingPricesCarousel";
+import {
+  buildYourOwn,
+  oneOffServices,
+  popularBundles,
+  pricingCategories,
+  pricingExplanation,
+  pricingFaqs,
+  pricingHero,
+  pricingNotes,
+  simplePricingSections,
+  startingPrices,
+} from "@/data/pricing";
 
-import TrustBar from "@/components/TrustBar";
-import WhyChooseUs from "@/components/WhyChooseUs";
-
-import Link from "next/link";
-
-import { motion } from "framer-motion";
-import Image from "next/image";
 export default function PricingPage() {
+  const [activeCategory, setActiveCategory] = useState("websites");
+
+  const getCategory = (id) => pricingCategories.find((category) => category.id === id);
+  const getSimple = (id) => simplePricingSections.find((section) => section.id === id);
+
+  const categoryMap = [
+    { id: "websites", label: "Websites", type: "packages", packages: getCategory("website-packages")?.packages ?? [] },
+    { id: "marketing", label: "Marketing", type: "packages", packages: getCategory("marketing-packages")?.packages ?? [] },
+    { id: "seo", label: "SEO", type: "packages", packages: getCategory("seo-packages")?.packages ?? [] },
+    { id: "ads", label: "Paid Ads", type: "packages", packages: getCategory("paid-ads-packages")?.packages ?? [] },
+    { id: "branding", label: "Branding", type: "packages", packages: getCategory("branding-packages")?.packages ?? [] },
+    { id: "design", label: "Design", type: "simple", items: getSimple("graphic-design-services")?.items ?? [] },
+    { id: "video", label: "Video", type: "simple", items: getSimple("video-editing-services")?.items ?? [] },
+    {
+      id: "email-domains",
+      label: "Email & Domains",
+      type: "simple",
+      intro: getSimple("business-email-domain-workspace")?.intro,
+      items: getSimple("business-email-domain-workspace")?.items ?? [],
+    },
+    { id: "care", label: "Care Plans", type: "packages", packages: getCategory("website-care-maintenance")?.packages ?? [] },
+    { id: "it", label: "IT Support", type: "packages", packages: getCategory("it-support-packages")?.packages ?? [] },
+    { id: "security", label: "Security", type: "simple", items: getSimple("cybersecurity-services")?.items ?? [] },
+    { id: "hosting", label: "Hosting", type: "simple", items: getSimple("hosting-cloud-backup")?.items ?? [] },
+    { id: "automation", label: "Automation", type: "simple", items: getSimple("software-setup-automation")?.items ?? [] },
+  ];
+
+  const jumpTo = (id, categoryId) => {
+    if (categoryId) setActiveCategory(categoryId);
+    if (typeof window !== "undefined") {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <main className="bg-white min-h-screen">
-      {/* Hero Section */}
-      <section className="relative py-24 md:py-32 px-6 bg-gradient-to-br from-white to-gray-50 overflow-hidden">
-        {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-          {/* Left: Text */}
-          <div className="flex flex-col items-center md:items-start text-center md:text-left px-4 gap-6">
-            <span className="inline-block text-sm font-semibold text-red bg-red/10 px-4 py-2 rounded-full">
-              Affordable Prices
-            </span>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight">
-              Simple, <span className="text-red">Transparent Pricing</span> for
-              Affordable Digital Growth in the UK
-            </h1>
-            <p className="text-lg md:text-xl text-gray-700 max-w-xl">
-              No hidden fees. Affordable website, branding, SEO, and marketing
-              services designed to{" "}
-              <span className="text-red">help UK businesses and startups</span>{" "}
-              grow online.
-            </p>
-            <div className="flex justify-center md:justify-start gap-4">
-              <Link
-                href="https://wa.me/447443098117"
-                aria-label="Message Awais Digital Services on WhatsApp"
-                target="_blank"
-                className="bg-green-500 text-white px-6 py-3 rounded-full hover:bg-navy hover:scale-105 transition transform duration-300"
-              >
-                Message on WhatsApp
-              </Link>
-            </div>
+      <PricingHero title={pricingHero.title} description={pricingHero.description} />
+      <PricingExplanation
+        title={pricingExplanation.title}
+        content={pricingExplanation.content}
+        cards={pricingExplanation.cards}
+      />
+      <PathSelector
+        onSelect={(id) => {
+          if (id === "business-setup") {
+            jumpTo("category-explorer", "email-domains");
+            return;
+          }
+          const map = {
+            "website-packages": "websites",
+            "marketing-packages": "marketing",
+            "one-off-services": "websites",
+          };
+          jumpTo(id === "one-off-services" ? "one-off-services" : "category-explorer", map[id]);
+        }}
+      />
+      <StartingPricesCarousel rows={startingPrices} />
+
+      <section id="popular-bundles" className="py-12 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-center text-navy mb-2">
+            Popular Business Bundles
+          </h2>
+          <p className="text-center text-gray-700 max-w-4xl mx-auto mb-8">
+            These bundles are designed for common small business needs. Each bundle
+            combines multiple services at a lower price than buying each item separately.
+          </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {popularBundles.map((bundle) => (
+              <BundleCard key={bundle.name} bundle={bundle} />
+            ))}
           </div>
-
-          {/* Right: Image */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            viewport={{ once: true }}
-            className="flex justify-center md:justify-end"
-          >
-            <Image
-              src="/images/pricing-image.png"
-              alt="Digital Services Illustration"
-              width={500}
-              height={500}
-              className="hidden md:block w-full max-w-md md:max-w-lg h-auto object-contain transition-transform duration-500 hover:scale-105 rounded-2xl"
-              priority
-            />
-          </motion.div>
         </div>
-
-        {/* Scroll Indicator */}
-        <div className="mt-16 animate-bounce-slow text-center">
-          <svg
-            width="28"
-            height="28"
-            viewBox="0 0 24 24"
-            fill="none"
-            className="text-black mx-auto"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M12 5v14M12 19l-7-7M12 19l7-7"
-              stroke="currentColor"
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          <p className="text-sm text-black mt-2">Scroll down</p>
-        </div>
-
-        {/* Custom bounce animation */}
-        <style jsx>{`
-          @keyframes bounce-slow {
-            0%,
-            100% {
-              transform: translateY(0);
-              opacity: 0.7;
-            }
-            50% {
-              transform: translateY(10px);
-              opacity: 1;
-            }
-          }
-          .animate-bounce-slow {
-            animation: bounce-slow 2.5s infinite;
-          }
-        `}</style>
       </section>
 
-      {/* Pricing Tiers */}
-      <section id="pricing-tiers">
-        <Pricing />
-      </section>
-      {/* Pricing Calculator */}
-      <PricingCalculator />
-      {/* Trust + Why Choose + CTA */}
-      <TrustBar />
-      <WhyChooseUs />
+      <CategoryExplorer
+        key={activeCategory}
+        categoryMap={categoryMap}
+        initialId={activeCategory}
+      />
+
+      <BuildYourOwnSection data={buildYourOwn} />
+      <OneOffServices section={oneOffServices} />
+      <PricingNotes notes={pricingNotes} />
+      <PricingFAQ faqs={pricingFaqs} />
+      <FinalCTA />
     </main>
   );
 }

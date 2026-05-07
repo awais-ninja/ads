@@ -23,7 +23,7 @@ export default function ModernNavbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="bg-[#f9f9ff] border-b border-gray-200 fixed w-full z-50 shadow-sm">
+    <header className="bg-[#f9f9ff]/95 backdrop-blur border-b border-gray-200 fixed w-full z-50 shadow-sm">
       <div className="container mx-auto px-4 flex items-center justify-between h-20">
         {/* Site logo */}
         <Link
@@ -37,7 +37,7 @@ export default function ModernNavbar() {
             width={160}
             height={40}
             priority
-            className="h-10 w-auto"
+            className="h-10 md:h-11 w-auto object-contain"
           />
         </Link>
 
@@ -96,7 +96,7 @@ export default function ModernNavbar() {
               alt="Awais Digital Services Logo"
               width={160}
               height={40}
-              className="h-10 w-auto"
+              className="h-10 w-auto object-contain"
             />
             <button
               className="text-gray-800"
